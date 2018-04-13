@@ -1,0 +1,56 @@
+﻿<div class="widgets" ng-controller="ConteudoCtrl">
+
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Post"
+             ba-panel-class="with-scroll">
+            <form name="form" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_nome.$pristine && form.ds_nome.$invalid }">
+                                    <label for="ds_titulo">Nome do Conteúdo</label>
+                                    <input ng-model="conteudo.DS_CONTEUDO" placeholder="Nome" name="ds_nome" ng-minlength="4" ng-required="true" class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{ 'has-error': !form.nr_ordem.$pristine && form.nr_ordem.$invalid }">
+                                    <label for="nr_ordem">Ordem do Conteúdo</label>
+                                    <input ng-model="conteudo.NR_ORDEM" placeholder="Ordem do Conteúdo" name="nr_ordem" ng-required="true" class="form-control" type="number" min="1" />
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label>Vídeo?</label>
+                                    <ba-switcher switcher-style="primary" switcher-value="conteudo.FL_VIDEO"></ba-switcher>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_link.$pristine && form.ds_link.$invalid }">
+                                    <label for="im_imagem">Link do Conteúdo</label>
+                                    <input ng-model="conteudo.DS_LINK" placeholder="Link do Conteúdo" name="ds_link" ng-minlength="4" class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-5" ng-if="uploader">
+                                <div class="form-group" ng-class="{ 'has-error': !form.im_imagem.$pristine && form.im_imagem.$invalid }">
+                                    <label for="ds_audio">Imagem</label>
+                                    <input ng-model="conteudo.IM_IMAGEM" name="im_imagem" type="file" nv-file-select uploader="uploader"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <button class="btn btn-success btn-block" ng-disabled="form.$invalid" ng-click="salvar(conteudo)">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

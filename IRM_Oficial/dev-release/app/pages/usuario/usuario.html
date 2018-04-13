@@ -1,0 +1,63 @@
+﻿<div class="widgets" ng-controller="UsuarioCtrl">
+
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Usuário"
+             ba-panel-class="with-scroll">
+            <form name="form" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_nome.$pristine && form.ds_nome.$invalid }">
+                                    <label for="ds_nome">Nome</label>
+                                    <input ng-disabled="usuario.ID_USUARIO" ng-model="usuario.DS_NOME" placeholder="Nome" name="ds_nome" ng-minlength="4" ng-required="true" class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error': !form.id_tipo_usuario.$pristine && form.id_tipo_usuario.$invalid }">
+                                    <label for="id_tipo_usuario">Tipo de Usuário</label>
+                                    <select ng-model="usuario.ID_TIPO_USUARIO" ng-options="tipo_usuario.DS_TIPO_USUARIO for tipo_usuario in lstTiposUsuario track by tipo_usuario.ID_TIPO_USUARIO" name="id_tipo_usuario" ng-required="true" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_email.$pristine && form.ds_email.$invalid }">
+                                    <label for="ds_email">Email</label>
+                                    <input ng-disabled="usuario.ID_USUARIO" ng-model="usuario.DS_EMAIL" placeholder="E-mail" name="ds_email" ng-minlength="4" ng-required="true" class="form-control" type="email" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-hide="usuario.ID_USUARIO" ng-class="{ 'has-error': !form.ds_endereco.$pristine && form.ds_endereco.$invalid }">
+                                    <label for="ds_endereco">Endereço</label>
+                                    <input gm-places-autocomplete ng-model="usuario.DS_ENDERECO" placeholder="Endereço" name="ds_endereco" ng-required="true" class="form-control" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-hide="usuario.ID_USUARIO">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_senha.$pristine && form.ds_senha.$invalid }">
+                                    <label for="ds_senha">Senha</label>
+                                    <input ng-model="usuario.DS_SENHA" id="ds_senha" name="ds_senha" placeholder="Senha" ng-minlength="6" ng-required="true" class="form-control" type="password" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_conf_senha.$pristine && form.ds_conf_senha.$invalid }">
+                                    <label for="ds_conf_senha">Confirmação de Senha</label>
+                                    <input ng-model="usuario.DS_CONF_SENHA" id="ds_conf_senha" pw-check="ds_senha" name="ds_conf_senha" placeholder="Confirmação de Senha" ng-minlength="6" ng-required="true" class="form-control" type="password" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <button class="btn btn-success btn-block" ng-disabled="!usuario.ID_USUARIO && (form.$invalid || !usuario.DS_CIDADE || !usuario.DS_ESTADO || !usuario.DS_PAIS)" ng-click="salvar(usuario)">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

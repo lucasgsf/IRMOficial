@@ -1,0 +1,62 @@
+﻿/**
+ * @author v.lugovsky
+ * created on 16.12.2015
+ */
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.pages.notificacao')
+      .controller('NotificacaoCtrl', NotificacaoCtrl);
+
+  /** @ngInject */
+  function NotificacaoCtrl($scope, $rootScope, $state, NotificacaoService, toastr, toastrConfig) {
+      var openedToasts = [];
+      var defaultConfig = angular.copy(toastrConfig);
+
+      // Configurações Date Picker
+      $scope.modelDatePicker = {};
+      $scope.optionsDatePicker = {
+          showWeeks: false
+      };
+      $scope.openDatePicker = function ($event, elementOpened) {
+          $event.preventDefault();
+          $event.stopPropagation();
+          $scope.modelDatePicker[elementOpened] = !$scope.modelDatePicker[elementOpened];
+      };
+      
+      $scope.salvar = function (item) {
+          var push = angular.copy(item);
+          push.DT_ENVIO.setHours(push.DT_HORARIO.getHours());
+          push.DT_ENVIO.setMinutes(push.DT_HORARIO.getMinutes());
+          push.DT_ENVIO = (push.DT_ENVIO) ? push.DT_ENVIO.toISOString() : null;
+          NotificacaoService.enviarNotificacao(push).then(function (response) {
+              if (response)
+                  $scope.openToast("success", "Sucesso!", "Notificação cadastrada com sucesso!");
+              else
+                  $scope.openToast("error", "Erro!", "Erro ao realizar o cadastro!");
+          });
+      }
+
+      $scope.openToast = function (type, title, message) {
+          var toastOptions = {
+              autoDismiss: true,
+              positionClass: 'toast-top-right',
+              type: type,
+              timeOut: '5000',
+              extendedTimeOut: '2000',
+              allowHtml: false,
+              closeButton: false,
+              tapToDismiss: true,
+              progressBar: false,
+              newestOnTop: true,
+              maxOpened: 0,
+              preventDuplicates: false,
+              preventOpenDuplicates: false,
+              title: title,
+              msg: message
+          };
+          angular.extend(toastrConfig, toastOptions);
+          openedToasts.push(toastr[toastOptions.type](toastOptions.msg, toastOptions.title));
+      };
+  }
+})();

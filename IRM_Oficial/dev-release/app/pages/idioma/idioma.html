@@ -1,0 +1,30 @@
+﻿<div class="widgets" ng-controller="IdiomaCtrl">
+
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Idioma"
+             ba-panel-class="with-scroll">
+            <form name="form" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_idioma.$pristine && form.ds_idioma.$invalid }">
+                                    <label for="ds_idioma">Idioma</label>
+                                    <input ng-model="idioma.DS_IDIOMA" placeholder="Idioma" name="ds_idioma" ng-minlength="4" ng-required="true" class="form-control" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <button class="btn btn-success btn-block" ng-disabled="form.$invalid" ng-click="salvar(idioma)">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,30 @@
+﻿<div class="widgets" ng-controller="TipoPostCtrl">
+
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Tipo de Post"
+             ba-panel-class="with-scroll">
+            <form name="form" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_tipo_post.$pristine && form.ds_tipo_post.$invalid }">
+                                    <label for="ds_tipo_post">Tipo de Post</label>
+                                    <input ng-model="tipo_post.DS_TIPO_POST" placeholder="Tipo de Post" name="ds_tipo_post" ng-minlength="4" ng-required="true" class="form-control" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <button class="btn btn-success btn-block" ng-disabled="form.$invalid" ng-click="salvar(tipo_post)">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

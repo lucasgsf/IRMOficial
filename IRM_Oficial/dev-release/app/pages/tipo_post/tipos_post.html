@@ -1,0 +1,52 @@
+﻿<div class="widgets" ng-controller="TiposPostCtrl">
+
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-md-2 col-md-offset-10">
+            <button class="btn btn-info btn-block" ui-sref="tipo_post">Cadastrar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Tipos de Post"
+             ba-panel-class="with-scroll">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table" st-table="displayedList" st-safe-src="safeList">
+                        <thead>
+                            <tr class="sortable ">
+                                <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                                <th st-sort="DS_TIPO_POST">Tipo de Post</th>
+                                <th>Ações</th>
+                            </tr>
+                            <tr>
+                                <th colspan="3">
+                                    <input st-search="" placeholder="Pesquisar" class="input-sm form-control search-input"
+                                           type="search" />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in displayedList">
+                                <td class="table-id">{{item.ID_TIPO_POST}}</td>
+                                <td>{{item.DS_TIPO_POST}}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-with-icon" style="margin: 5px;" ng-click="edit(item)"><i class="ion-edit"></i>Editar</button>
+                                    <button class="btn btn-danger btn-with-icon" style="margin: 5px;" ng-click="delete(item)"><i class="ion-trash-a"></i>Excluir</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

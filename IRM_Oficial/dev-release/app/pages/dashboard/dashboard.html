@@ -1,0 +1,142 @@
+﻿<div ng-controller="DashboardCtrl">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="input-group">
+                <input ng-model="dash.DT_INICIO" placeholder="Data de Início" type="text" class="form-control" name="dt_inicio" uib-datepicker-popup="dd/MM/yyyy" datepicker-options="optionsDatePicker" is-open="modelDatePicker.dt_inicio" ng-required="true" close-text="Fechar" alt-input-formats="altInputFormats" show-button-bar="false" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 'dt_inicio')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="input-group">
+                <input ng-model="dash.DT_FIM" placeholder="Data de Fim" type="text" class="form-control" name="dt_fim" uib-datepicker-popup="dd/MM/yyyy" datepicker-options="optionsDatePicker" is-open="modelDatePicker.dt_fim" ng-required="true" close-text="Fechar" alt-input-formats="altInputFormats" show-button-bar="false" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 'dt_fim')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <button class="btn btn-block btn-success" ng-click="gerar(dash.DT_INICIO, dash.DT_FIM)">Gerar</button>
+        </div>
+    </div>
+
+    <dashboard-pie-chart></dashboard-pie-chart>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12"
+             ba-panel
+             ba-panel-title="Dados Gerais">
+            <div class="row">
+                <div class="col-md-12"><b>Acessos Hoje:</b> {{acessosHoje}}</div>
+            </div>
+            <div class="row" style="margin-top: 5px;">
+                <div class="col-md-12"><b>Acessos Totais:</b> {{acessosTotais}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12"
+             ba-panel
+             ba-panel-title="Usuários Por País (Total de países: {{displayedList.length}})"
+             ba-panel-class="medium-panel">
+            <dashboard-map></dashboard-map>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12"
+             ba-panel
+             ba-panel-title="Usuários Por Estado"
+             ba-panel-class="with-scroll">
+            <bar-chart></bar-chart>
+        </div>
+    </div>-->
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12"
+             ba-panel
+             ba-panel-title="Usuários Por País (Total de países: {{displayedList.length}})"
+             ba-panel-class="with-scroll">
+            <table class="table" st-table="displayedList" st-safe-src="safeList">
+                <thead>
+                    <tr class="sortable ">
+                        <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                        <th st-sort="DS_PAIS">País</th>
+                        <th st-sort="NR_QUANTIDADE">Nº de Usuários</th>
+                        <th>Ações</th>
+                    </tr>
+                    <tr>
+                        <th colspan="4">
+                            <input st-search="" placeholder="Pesquisar" class="input-sm form-control search-input"
+                                   type="search" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in displayedList" ng-if="item.DS_PAIS">
+                        <td class="table-id">{{$index}}</td>
+                        <td>{{item.DS_PAIS}}</td>
+                        <td>{{item.NR_QUANTIDADE}}</td>
+                        <td>
+                            <button class="btn btn-info btn-with-icon" style="margin: 5px;" ng-click="openModalEstados('app/pages/dashboard/barChart/modalEstados.html', 'lg', item)"><i class="ion-search"></i>Visualizar</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-xlg-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12"
+                     ba-panel
+                     ba-panel-title="Revenue"
+                     ba-panel-class="medium-panel">
+                    <dashboard-line-chart></dashboard-line-chart>
+                </div>
+                <div class="col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12"
+                     ba-panel
+                     ba-panel-class="popular-app medium-panel">
+                    <popular-app></popular-app>
+                </div>
+            </div>
+        </div>
+        <div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12"
+             ba-panel
+             ba-panel-title="Feed"
+             ba-panel-class="large-panel with-scroll feed-panel">
+          <blur-feed></blur-feed>
+        </div>
+    </div>-->
+    <!--<div class="row shift-up">
+      <div class="col-xlg-3 col-lg-6 col-md-6 col-xs-12"
+           ba-panel
+           ba-panel-title="To Do List"
+           ba-panel-class="xmedium-panel feed-comply-panel with-scroll todo-panel">
+        <dashboard-todo></dashboard-todo>
+      </div>
+      <div class="col-xlg-6 col-lg-6 col-md-6 col-xs-12"
+           ba-panel
+           ba-panel-title="Calendar"
+           ba-panel-class="xmedium-panel feed-comply-panel with-scroll calendar-panel">
+        <dashboard-calendar></dashboard-calendar>
+      </div>
+    </div>-->
+    <!--<div class="row">
+      <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div ba-panel ba-panel-title="Weather" ba-panel-class="medium-panel with-scroll">
+          <blur-weather forecast="5"></blur-weather>
+        </div>
+      </div>
+    </div>-->
+</div>

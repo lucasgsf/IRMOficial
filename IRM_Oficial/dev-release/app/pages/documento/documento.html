@@ -1,0 +1,69 @@
+﻿<div class="widgets" ng-controller="DocumentoCtrl">
+
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Post"
+             ba-panel-class="with-scroll">
+            <form name="form" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_nome.$pristine && form.ds_nome.$invalid }">
+                                    <label for="ds_titulo">Nome do Documento</label>
+                                    <input ng-model="documento.DS_NOME" placeholder="Nome" name="ds_nome" ng-minlength="4" ng-required="true" class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{ 'has-error': !form.dt_cadastro.$pristine && form.dt_cadastro.$invalid }">
+                                    <label for="dt_cadastro">Data do Post</label>
+                                    <div class="input-group">
+                                        <input ng-model="documento.DT_CADASTRO" placeholder="Data do Documento" type="text" class="form-control" name="dt_cadastro" uib-datepicker-popup="dd/MM/yyyy" datepicker-options="optionsDatePicker" is-open="modelDatePicker.dt_cadastro" ng-required="true" close-text="Fechar" alt-input-formats="altInputFormats" show-button-bar="false" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 'dt_cadastro')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" ng-class="{ 'has-error': !form.nr_ordem.$pristine && form.nr_ordem.$invalid }">
+                                    <label for="nr_ordem">Ordem</label>
+                                    <input ng-model="documento.NR_ORDEM" placeholder="Ordem" name="nr_ordem" ng-required="true" class="form-control" type="number" min="1" />
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label>Fixo?</label>
+                                    <ba-switcher switcher-style="primary" switcher-value="documento.FL_FIXO"></ba-switcher>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_descricao.$pristine && form.ds_descricao.$invalid }">
+                                    <label for="ds_post">Descrição</label>
+                                    <textarea ng-model="documento.DS_DESCRICAO" placeholder="Descrição" name="ds_descricao" ng-minlength="4" ng-required="true" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" ng-if="uploader">
+                                <div class="form-group" ng-class="{ 'has-error': !form.im_documento.$pristine && form.im_documento.$invalid }">
+                                    <label for="ds_audio">Documento</label>
+                                    <input ng-model="documento.IM_DOCUMENTO" name="im_documento" type="file" nv-file-select uploader="uploader" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <button class="btn btn-success btn-block" ng-disabled="form.$invalid" ng-click="salvar(documento)">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

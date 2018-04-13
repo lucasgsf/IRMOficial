@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="irmoficialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_ACOES_CONTEUDO">
+          <Key>
+            <PropertyRef Name="ID_ACOES_CONTEUDO" />
+          </Key>
+          <Property Name="ID_ACOES_CONTEUDO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FL_CURTIR" Type="bit" Nullable="false" />
+          <Property Name="DT_ACAO_CURTIR" Type="datetime" Nullable="false" />
+          <Property Name="ID_CONTEUDO" Type="int" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_ACOES_POST">
+          <Key>
+            <PropertyRef Name="ID_ACOES_POST" />
+          </Key>
+          <Property Name="ID_ACOES_POST" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FL_CURTIR" Type="bit" Nullable="false" />
+          <Property Name="FL_NAO_CURTIR" Type="bit" Nullable="false" />
+          <Property Name="FL_PLAY" Type="bit" Nullable="false" />
+          <Property Name="FL_COMPARTILHAR" Type="bit" Nullable="false" />
+          <Property Name="DT_ACAO_CURTIR" Type="datetime" />
+          <Property Name="DT_ACAO_PLAY" Type="datetime" />
+          <Property Name="DT_ACAO_COMPARTILHAR" Type="datetime" />
+          <Property Name="ID_POST" Type="int" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_CONTEUDO">
+          <Key>
+            <PropertyRef Name="ID_CONTEUDO" />
+          </Key>
+          <Property Name="ID_CONTEUDO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DS_CONTEUDO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IM_IMAGEM" Type="varbinary(max)" />
+          <Property Name="DS_LINK" Type="varchar(max)" />
+          <Property Name="NR_ORDEM" Type="int" Nullable="false" />
+          <Property Name="FL_VIDEO" Type="bit" />
+        </EntityType>
+        <EntityType Name="TB_DOCUMENTO">
+          <Key>
+            <PropertyRef Name="ID_DOCUMENTO" />
+          </Key>
+          <Property Name="ID_DOCUMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DS_NOME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DS_DESCRICAO" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DT_CADASTRO" Type="datetime" Nullable="false" />
+          <Property Name="FL_FIXO" Type="bit" Nullable="false" />
+          <Property Name="NR_ORDEM" Type="int" Nullable="false" />
+          <Property Name="IM_DOCUMENTO" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_IDIOMA">
+          <Key>
+            <PropertyRef Name="ID_IDIOMA" />
+          </Key>
+          <Property Name="ID_IDIOMA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DS_IDIOMA" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_POST">
+          <Key>
+            <PropertyRef Name="ID_POST" />
+          </Key>
+          <Property Name="ID_POST" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DS_TITULO" Type="nvarchar" MaxLength="100" />
+          <Property Name="DS_POST" Type="nvarchar(max)" />
+          <Property Name="IM_IMAGEM" Type="varbinary(max)" />
+          <Property Name="DS_AUDIO" Type="varchar(max)" />
+          <Property Name="NR_ORDEM" Type="int" Nullable="false" />
+          <Property Name="DT_CADASTRO" Type="datetime" Nullable="false" />
+          <Property Name="ID_TIPO_POST" Type="int" Nullable="false" />
+          <Property Name="ID_IDIOMA" Type="int" Nullable="false" />
+          <Property Name="FL_FIXO" Type="bit" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_POST">
+          <Key>
+            <PropertyRef Name="ID_TIPO_POST" />
+          </Key>
+          <Property Name="ID_TIPO_POST" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DS_TIPO_POST" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_USUARIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_USUARIO" />
+          </Key>
+          <Property Name="ID_TIPO_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DS_TIPO_USUARIO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DS_NOME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DS_EMAIL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DS_SENHA" Type="varchar" MaxLength="255" />
+          <Property Name="DS_CIDADE" Type="varchar" MaxLength="255" />
+          <Property Name="DS_ESTADO" Type="varchar" MaxLength="255" />
+          <Property Name="DS_PAIS" Type="varchar" MaxLength="255" />
+          <Property Name="DS_PAIS_SIGLA" Type="varchar" MaxLength="3" />
+          <Property Name="DT_CADASTRO" Type="datetime" Nullable="false" />
+          <Property Name="ID_TIPO_USUARIO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_USUARIO_LOGIN">
+          <Key>
+            <PropertyRef Name="ID_USUARIO_LOGIN" />
+          </Key>
+          <Property Name="ID_USUARIO_LOGIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DT_LOGIN" Type="datetime" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" />
+        </EntityType>
+        <Association Name="FK__TB_ACOES___ID_PO__5629CD9C">
+          <End Role="TB_POST" Type="Self.TB_POST" Multiplicity="1" />
+          <End Role="TB_ACOES_POST" Type="Self.TB_ACOES_POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_POST">
+              <PropertyRef Name="ID_POST" />
+            </Principal>
+            <Dependent Role="TB_ACOES_POST">
+              <PropertyRef Name="ID_POST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_ACOES___ID_US__4CA06362">
+          <End Role="TB_USUARIO" Type="Self.TB_USUARIO" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TB_ACOES_POST" Type="Self.TB_ACOES_POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_ACOES_POST">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_USUARI__ID_TI__25869641">
+          <End Role="TB_TIPO_USUARIO" Type="Self.TB_TIPO_USUARIO" Multiplicity="1" />
+          <End Role="TB_USUARIO" Type="Self.TB_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPO_USUARIO">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_USUARIO">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_ACOES_CONTEUDO_TB_CONTEUDO">
+          <End Role="TB_CONTEUDO" Type="Self.TB_CONTEUDO" Multiplicity="1" />
+          <End Role="TB_ACOES_CONTEUDO" Type="Self.TB_ACOES_CONTEUDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CONTEUDO">
+              <PropertyRef Name="ID_CONTEUDO" />
+            </Principal>
+            <Dependent Role="TB_ACOES_CONTEUDO">
+              <PropertyRef Name="ID_CONTEUDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_ACOES_CONTEUDO_TB_USUARIO">
+          <End Role="TB_USUARIO" Type="Self.TB_USUARIO" Multiplicity="1" />
+          <End Role="TB_ACOES_CONTEUDO" Type="Self.TB_ACOES_CONTEUDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_ACOES_CONTEUDO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_USUARIO_LOGIN_TB_USUARIO">
+          <End Role="TB_USUARIO" Type="Self.TB_USUARIO" Multiplicity="0..1" />
+          <End Role="TB_USUARIO_LOGIN" Type="Self.TB_USUARIO_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_USUARIO_LOGIN">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="irmoficialModelStoreContainer">
+          <EntitySet Name="TB_ACOES_CONTEUDO" EntityType="Self.TB_ACOES_CONTEUDO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_ACOES_POST" EntityType="Self.TB_ACOES_POST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_CONTEUDO" EntityType="Self.TB_CONTEUDO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_DOCUMENTO" EntityType="Self.TB_DOCUMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_IDIOMA" EntityType="Self.TB_IDIOMA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_POST" EntityType="Self.TB_POST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TIPO_POST" EntityType="Self.TB_TIPO_POST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TIPO_USUARIO" EntityType="Self.TB_TIPO_USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_USUARIO" EntityType="Self.TB_USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_USUARIO_LOGIN" EntityType="Self.TB_USUARIO_LOGIN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TB_ACOES___ID_PO__5629CD9C" Association="Self.FK__TB_ACOES___ID_PO__5629CD9C">
+            <End Role="TB_POST" EntitySet="TB_POST" />
+            <End Role="TB_ACOES_POST" EntitySet="TB_ACOES_POST" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_ACOES___ID_US__4CA06362" Association="Self.FK__TB_ACOES___ID_US__4CA06362">
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+            <End Role="TB_ACOES_POST" EntitySet="TB_ACOES_POST" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_USUARI__ID_TI__25869641" Association="Self.FK__TB_USUARI__ID_TI__25869641">
+            <End Role="TB_TIPO_USUARIO" EntitySet="TB_TIPO_USUARIO" />
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_ACOES_CONTEUDO_TB_CONTEUDO" Association="Self.FK_TB_ACOES_CONTEUDO_TB_CONTEUDO">
+            <End Role="TB_CONTEUDO" EntitySet="TB_CONTEUDO" />
+            <End Role="TB_ACOES_CONTEUDO" EntitySet="TB_ACOES_CONTEUDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_ACOES_CONTEUDO_TB_USUARIO" Association="Self.FK_TB_ACOES_CONTEUDO_TB_USUARIO">
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+            <End Role="TB_ACOES_CONTEUDO" EntitySet="TB_ACOES_CONTEUDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_USUARIO_LOGIN_TB_USUARIO" Association="Self.FK_TB_USUARIO_LOGIN_TB_USUARIO">
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+            <End Role="TB_USUARIO_LOGIN" EntitySet="TB_USUARIO_LOGIN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="irmoficialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_IDIOMA">
+          <Key>
+            <PropertyRef Name="ID_IDIOMA" />
+          </Key>
+          <Property Name="ID_IDIOMA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_IDIOMA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_POST" Relationship="Self.FK__TB_POST__ID_IDIO__2D27B809" FromRole="TB_IDIOMA" ToRole="TB_POST" />
+        </EntityType>
+        <EntityType Name="TB_POST">
+          <Key>
+            <PropertyRef Name="ID_POST" />
+          </Key>
+          <Property Name="ID_POST" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_POST" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DT_CADASTRO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_TIPO_POST" Type="Int32" Nullable="false" />
+          <Property Name="ID_IDIOMA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TB_IDIOMA" Relationship="Self.FK__TB_POST__ID_IDIO__2D27B809" FromRole="TB_POST" ToRole="TB_IDIOMA" />
+          <NavigationProperty Name="TB_TIPO_POST" Relationship="Self.FK__TB_POST__ID_TIPO__2C3393D0" FromRole="TB_POST" ToRole="TB_TIPO_POST" />
+          <Property Name="DS_TITULO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IM_IMAGEM" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DS_AUDIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_ACOES_POST" Relationship="irmoficialModel.FK__TB_ACOES___ID_PO__4BAC3F29" FromRole="TB_POST" ToRole="TB_ACOES_POST" />
+          <Property Name="NR_ORDEM" Type="Int32" Nullable="false" />
+          <Property Name="FL_FIXO" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_POST">
+          <Key>
+            <PropertyRef Name="ID_TIPO_POST" />
+          </Key>
+          <Property Name="ID_TIPO_POST" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_TIPO_POST" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_POST" Relationship="Self.FK__TB_POST__ID_TIPO__2C3393D0" FromRole="TB_TIPO_POST" ToRole="TB_POST" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_USUARIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_USUARIO" />
+          </Key>
+          <Property Name="ID_TIPO_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_TIPO_USUARIO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_USUARIO" Relationship="Self.FK__TB_USUARI__ID_TI__25869641" FromRole="TB_TIPO_USUARIO" ToRole="TB_USUARIO" />
+        </EntityType>
+        <EntityType Name="TB_USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_NOME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DS_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DS_SENHA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_CIDADE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_ESTADO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_PAIS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DT_CADASTRO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_TIPO_USUARIO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TB_TIPO_USUARIO" Relationship="Self.FK__TB_USUARI__ID_TI__25869641" FromRole="TB_USUARIO" ToRole="TB_TIPO_USUARIO" />
+          <NavigationProperty Name="TB_ACOES_POST" Relationship="irmoficialModel.FK__TB_ACOES___ID_US__4CA06362" FromRole="TB_USUARIO" ToRole="TB_ACOES_POST" />
+          <Property Name="DS_PAIS_SIGLA" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_USUARIO_LOGIN" Relationship="irmoficialModel.FK_TB_USUARIO_LOGIN_TB_USUARIO" FromRole="TB_USUARIO" ToRole="TB_USUARIO_LOGIN" />
+          <NavigationProperty Name="TB_ACOES_CONTEUDO" Relationship="irmoficialModel.FK_TB_ACOES_CONTEUDO_TB_USUARIO" FromRole="TB_USUARIO" ToRole="TB_ACOES_CONTEUDO" />
+        </EntityType>
+        <Association Name="FK__TB_POST__ID_IDIO__2D27B809">
+          <End Role="TB_IDIOMA" Type="Self.TB_IDIOMA" Multiplicity="1" />
+          <End Role="TB_POST" Type="Self.TB_POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_IDIOMA">
+              <PropertyRef Name="ID_IDIOMA" />
+            </Principal>
+            <Dependent Role="TB_POST">
+              <PropertyRef Name="ID_IDIOMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_POST__ID_TIPO__2C3393D0">
+          <End Role="TB_TIPO_POST" Type="Self.TB_TIPO_POST" Multiplicity="1" />
+          <End Role="TB_POST" Type="Self.TB_POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPO_POST">
+              <PropertyRef Name="ID_TIPO_POST" />
+            </Principal>
+            <Dependent Role="TB_POST">
+              <PropertyRef Name="ID_TIPO_POST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_USUARI__ID_TI__25869641">
+          <End Role="TB_TIPO_USUARIO" Type="Self.TB_TIPO_USUARIO" Multiplicity="1" />
+          <End Role="TB_USUARIO" Type="Self.TB_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPO_USUARIO">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_USUARIO">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_IRMOficial" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_IDIOMA" EntityType="Self.TB_IDIOMA" />
+          <EntitySet Name="TB_POST" EntityType="Self.TB_POST" />
+          <EntitySet Name="TB_TIPO_POST" EntityType="Self.TB_TIPO_POST" />
+          <EntitySet Name="TB_TIPO_USUARIO" EntityType="Self.TB_TIPO_USUARIO" />
+          <EntitySet Name="TB_USUARIO" EntityType="Self.TB_USUARIO" />
+          <AssociationSet Name="FK__TB_POST__ID_IDIO__2D27B809" Association="Self.FK__TB_POST__ID_IDIO__2D27B809">
+            <End Role="TB_IDIOMA" EntitySet="TB_IDIOMA" />
+            <End Role="TB_POST" EntitySet="TB_POST" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_POST__ID_TIPO__2C3393D0" Association="Self.FK__TB_POST__ID_TIPO__2C3393D0">
+            <End Role="TB_TIPO_POST" EntitySet="TB_TIPO_POST" />
+            <End Role="TB_POST" EntitySet="TB_POST" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_USUARI__ID_TI__25869641" Association="Self.FK__TB_USUARI__ID_TI__25869641">
+            <End Role="TB_TIPO_USUARIO" EntitySet="TB_TIPO_USUARIO" />
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+          </AssociationSet>
+          <EntitySet Name="TB_ACOES_POST" EntityType="irmoficialModel.TB_ACOES_POST" />
+          <EntitySet Name="TB_CONTEUDO" EntityType="irmoficialModel.TB_CONTEUDO" />
+          <AssociationSet Name="FK__TB_ACOES___ID_PO__4BAC3F29" Association="irmoficialModel.FK__TB_ACOES___ID_PO__4BAC3F29">
+            <End Role="TB_POST" EntitySet="TB_POST" />
+            <End Role="TB_ACOES_POST" EntitySet="TB_ACOES_POST" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_ACOES___ID_US__4CA06362" Association="irmoficialModel.FK__TB_ACOES___ID_US__4CA06362">
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+            <End Role="TB_ACOES_POST" EntitySet="TB_ACOES_POST" />
+          </AssociationSet>
+          <EntitySet Name="TB_USUARIO_LOGIN" EntityType="irmoficialModel.TB_USUARIO_LOGIN" />
+          <AssociationSet Name="FK_TB_USUARIO_LOGIN_TB_USUARIO" Association="irmoficialModel.FK_TB_USUARIO_LOGIN_TB_USUARIO">
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+            <End Role="TB_USUARIO_LOGIN" EntitySet="TB_USUARIO_LOGIN" />
+          </AssociationSet>
+          <EntitySet Name="TB_ACOES_CONTEUDO" EntityType="irmoficialModel.TB_ACOES_CONTEUDO" />
+          <AssociationSet Name="FK_TB_ACOES_CONTEUDO_TB_CONTEUDO" Association="irmoficialModel.FK_TB_ACOES_CONTEUDO_TB_CONTEUDO">
+            <End Role="TB_CONTEUDO" EntitySet="TB_CONTEUDO" />
+            <End Role="TB_ACOES_CONTEUDO" EntitySet="TB_ACOES_CONTEUDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_ACOES_CONTEUDO_TB_USUARIO" Association="irmoficialModel.FK_TB_ACOES_CONTEUDO_TB_USUARIO">
+            <End Role="TB_USUARIO" EntitySet="TB_USUARIO" />
+            <End Role="TB_ACOES_CONTEUDO" EntitySet="TB_ACOES_CONTEUDO" />
+          </AssociationSet>
+          <EntitySet Name="TB_DOCUMENTO" EntityType="irmoficialModel.TB_DOCUMENTO" />
+        </EntityContainer>
+        <EntityType Name="TB_ACOES_POST">
+          <Key>
+            <PropertyRef Name="ID_ACOES_POST" />
+          </Key>
+          <Property Name="ID_ACOES_POST" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FL_CURTIR" Type="Boolean" Nullable="false" />
+          <Property Name="FL_NAO_CURTIR" Type="Boolean" Nullable="false" />
+          <Property Name="ID_POST" Type="Int32" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="Int32" />
+          <NavigationProperty Name="TB_POST" Relationship="irmoficialModel.FK__TB_ACOES___ID_PO__4BAC3F29" FromRole="TB_ACOES_POST" ToRole="TB_POST" />
+          <NavigationProperty Name="TB_USUARIO" Relationship="irmoficialModel.FK__TB_ACOES___ID_US__4CA06362" FromRole="TB_ACOES_POST" ToRole="TB_USUARIO" />
+          <Property Name="FL_PLAY" Type="Boolean" Nullable="false" />
+          <Property Name="DT_ACAO_CURTIR" Type="DateTime" Precision="3" />
+          <Property Name="DT_ACAO_PLAY" Type="DateTime" Precision="3" />
+          <Property Name="FL_COMPARTILHAR" Type="Boolean" Nullable="false" />
+          <Property Name="DT_ACAO_COMPARTILHAR" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TB_CONTEUDO">
+          <Key>
+            <PropertyRef Name="ID_CONTEUDO" />
+          </Key>
+          <Property Name="ID_CONTEUDO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IM_IMAGEM" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DS_LINK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DS_CONTEUDO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NR_ORDEM" Type="Int32" Nullable="false" />
+          <Property Name="FL_VIDEO" Type="Boolean" />
+          <NavigationProperty Name="TB_ACOES_CONTEUDO" Relationship="irmoficialModel.FK_TB_ACOES_CONTEUDO_TB_CONTEUDO" FromRole="TB_CONTEUDO" ToRole="TB_ACOES_CONTEUDO" />
+        </EntityType>
+        <Association Name="FK__TB_ACOES___ID_PO__4BAC3F29">
+          <End Type="irmoficialModel.TB_POST" Role="TB_POST" Multiplicity="1" />
+          <End Type="irmoficialModel.TB_ACOES_POST" Role="TB_ACOES_POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_POST">
+              <PropertyRef Name="ID_POST" />
+            </Principal>
+            <Dependent Role="TB_ACOES_POST">
+              <PropertyRef Name="ID_POST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_ACOES___ID_US__4CA06362">
+          <End Type="irmoficialModel.TB_USUARIO" Role="TB_USUARIO" Multiplicity="0..1" />
+          <End Type="irmoficialModel.TB_ACOES_POST" Role="TB_ACOES_POST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_ACOES_POST">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TB_USUARIO_LOGIN">
+          <Key>
+            <PropertyRef Name="ID_USUARIO_LOGIN" />
+          </Key>
+          <Property Name="ID_USUARIO_LOGIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DT_LOGIN" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_USUARIO" Type="Int32" />
+          <NavigationProperty Name="TB_USUARIO" Relationship="irmoficialModel.FK_TB_USUARIO_LOGIN_TB_USUARIO" FromRole="TB_USUARIO_LOGIN" ToRole="TB_USUARIO" />
+        </EntityType>
+        <Association Name="FK_TB_USUARIO_LOGIN_TB_USUARIO">
+          <End Type="irmoficialModel.TB_USUARIO" Role="TB_USUARIO" Multiplicity="0..1" />
+          <End Type="irmoficialModel.TB_USUARIO_LOGIN" Role="TB_USUARIO_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_USUARIO_LOGIN">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TB_ACOES_CONTEUDO">
+          <Key>
+            <PropertyRef Name="ID_ACOES_CONTEUDO" />
+          </Key>
+          <Property Name="ID_ACOES_CONTEUDO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FL_CURTIR" Type="Boolean" Nullable="false" />
+          <Property Name="DT_ACAO_CURTIR" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_CONTEUDO" Type="Int32" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TB_CONTEUDO" Relationship="irmoficialModel.FK_TB_ACOES_CONTEUDO_TB_CONTEUDO" FromRole="TB_ACOES_CONTEUDO" ToRole="TB_CONTEUDO" />
+          <NavigationProperty Name="TB_USUARIO" Relationship="irmoficialModel.FK_TB_ACOES_CONTEUDO_TB_USUARIO" FromRole="TB_ACOES_CONTEUDO" ToRole="TB_USUARIO" />
+        </EntityType>
+        <Association Name="FK_TB_ACOES_CONTEUDO_TB_CONTEUDO">
+          <End Type="irmoficialModel.TB_CONTEUDO" Role="TB_CONTEUDO" Multiplicity="1" />
+          <End Type="irmoficialModel.TB_ACOES_CONTEUDO" Role="TB_ACOES_CONTEUDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CONTEUDO">
+              <PropertyRef Name="ID_CONTEUDO" />
+            </Principal>
+            <Dependent Role="TB_ACOES_CONTEUDO">
+              <PropertyRef Name="ID_CONTEUDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_ACOES_CONTEUDO_TB_USUARIO">
+          <End Type="irmoficialModel.TB_USUARIO" Role="TB_USUARIO" Multiplicity="1" />
+          <End Type="irmoficialModel.TB_ACOES_CONTEUDO" Role="TB_ACOES_CONTEUDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_ACOES_CONTEUDO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TB_DOCUMENTO">
+          <Key>
+            <PropertyRef Name="ID_DOCUMENTO" />
+          </Key>
+          <Property Name="ID_DOCUMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_NOME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DS_DESCRICAO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DT_CADASTRO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FL_FIXO" Type="Boolean" Nullable="false" />
+          <Property Name="NR_ORDEM" Type="Int32" Nullable="false" />
+          <Property Name="IM_DOCUMENTO" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="irmoficialModelStoreContainer" CdmEntityContainer="DB_IRMOficial">
+          <EntitySetMapping Name="TB_IDIOMA">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_IDIOMA">
+              <MappingFragment StoreEntitySet="TB_IDIOMA">
+                <ScalarProperty Name="ID_IDIOMA" ColumnName="ID_IDIOMA" />
+                <ScalarProperty Name="DS_IDIOMA" ColumnName="DS_IDIOMA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_POST">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_POST">
+              <MappingFragment StoreEntitySet="TB_POST">
+                <ScalarProperty Name="FL_FIXO" ColumnName="FL_FIXO" />
+                <ScalarProperty Name="NR_ORDEM" ColumnName="NR_ORDEM" />
+                <ScalarProperty Name="DS_AUDIO" ColumnName="DS_AUDIO" />
+                <ScalarProperty Name="IM_IMAGEM" ColumnName="IM_IMAGEM" />
+                <ScalarProperty Name="DS_TITULO" ColumnName="DS_TITULO" />
+                <ScalarProperty Name="ID_POST" ColumnName="ID_POST" />
+                <ScalarProperty Name="DS_POST" ColumnName="DS_POST" />
+                <ScalarProperty Name="DT_CADASTRO" ColumnName="DT_CADASTRO" />
+                <ScalarProperty Name="ID_TIPO_POST" ColumnName="ID_TIPO_POST" />
+                <ScalarProperty Name="ID_IDIOMA" ColumnName="ID_IDIOMA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TIPO_POST">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_TIPO_POST">
+              <MappingFragment StoreEntitySet="TB_TIPO_POST">
+                <ScalarProperty Name="ID_TIPO_POST" ColumnName="ID_TIPO_POST" />
+                <ScalarProperty Name="DS_TIPO_POST" ColumnName="DS_TIPO_POST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TIPO_USUARIO">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_TIPO_USUARIO">
+              <MappingFragment StoreEntitySet="TB_TIPO_USUARIO">
+                <ScalarProperty Name="ID_TIPO_USUARIO" ColumnName="ID_TIPO_USUARIO" />
+                <ScalarProperty Name="DS_TIPO_USUARIO" ColumnName="DS_TIPO_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_USUARIO">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_USUARIO">
+              <MappingFragment StoreEntitySet="TB_USUARIO">
+                <ScalarProperty Name="DS_PAIS_SIGLA" ColumnName="DS_PAIS_SIGLA" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="DS_NOME" ColumnName="DS_NOME" />
+                <ScalarProperty Name="DS_EMAIL" ColumnName="DS_EMAIL" />
+                <ScalarProperty Name="DS_SENHA" ColumnName="DS_SENHA" />
+                <ScalarProperty Name="DS_CIDADE" ColumnName="DS_CIDADE" />
+                <ScalarProperty Name="DS_ESTADO" ColumnName="DS_ESTADO" />
+                <ScalarProperty Name="DS_PAIS" ColumnName="DS_PAIS" />
+                <ScalarProperty Name="DT_CADASTRO" ColumnName="DT_CADASTRO" />
+                <ScalarProperty Name="ID_TIPO_USUARIO" ColumnName="ID_TIPO_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_ACOES_POST">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_ACOES_POST">
+              <MappingFragment StoreEntitySet="TB_ACOES_POST">
+                <ScalarProperty Name="DT_ACAO_COMPARTILHAR" ColumnName="DT_ACAO_COMPARTILHAR" />
+                <ScalarProperty Name="FL_COMPARTILHAR" ColumnName="FL_COMPARTILHAR" />
+                <ScalarProperty Name="DT_ACAO_PLAY" ColumnName="DT_ACAO_PLAY" />
+                <ScalarProperty Name="DT_ACAO_CURTIR" ColumnName="DT_ACAO_CURTIR" />
+                <ScalarProperty Name="FL_PLAY" ColumnName="FL_PLAY" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_POST" ColumnName="ID_POST" />
+                <ScalarProperty Name="FL_NAO_CURTIR" ColumnName="FL_NAO_CURTIR" />
+                <ScalarProperty Name="FL_CURTIR" ColumnName="FL_CURTIR" />
+                <ScalarProperty Name="ID_ACOES_POST" ColumnName="ID_ACOES_POST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_CONTEUDO">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_CONTEUDO">
+              <MappingFragment StoreEntitySet="TB_CONTEUDO">
+                <ScalarProperty Name="FL_VIDEO" ColumnName="FL_VIDEO" />
+                <ScalarProperty Name="NR_ORDEM" ColumnName="NR_ORDEM" />
+                <ScalarProperty Name="DS_CONTEUDO" ColumnName="DS_CONTEUDO" />
+                <ScalarProperty Name="DS_LINK" ColumnName="DS_LINK" />
+                <ScalarProperty Name="IM_IMAGEM" ColumnName="IM_IMAGEM" />
+                <ScalarProperty Name="ID_CONTEUDO" ColumnName="ID_CONTEUDO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_USUARIO_LOGIN">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_USUARIO_LOGIN">
+              <MappingFragment StoreEntitySet="TB_USUARIO_LOGIN">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="DT_LOGIN" ColumnName="DT_LOGIN" />
+                <ScalarProperty Name="ID_USUARIO_LOGIN" ColumnName="ID_USUARIO_LOGIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_ACOES_CONTEUDO">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_ACOES_CONTEUDO">
+              <MappingFragment StoreEntitySet="TB_ACOES_CONTEUDO">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_CONTEUDO" ColumnName="ID_CONTEUDO" />
+                <ScalarProperty Name="DT_ACAO_CURTIR" ColumnName="DT_ACAO_CURTIR" />
+                <ScalarProperty Name="FL_CURTIR" ColumnName="FL_CURTIR" />
+                <ScalarProperty Name="ID_ACOES_CONTEUDO" ColumnName="ID_ACOES_CONTEUDO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DOCUMENTO">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_DOCUMENTO">
+              <MappingFragment StoreEntitySet="TB_DOCUMENTO">
+                <ScalarProperty Name="IM_DOCUMENTO" ColumnName="IM_DOCUMENTO" />
+                <ScalarProperty Name="NR_ORDEM" ColumnName="NR_ORDEM" />
+                <ScalarProperty Name="FL_FIXO" ColumnName="FL_FIXO" />
+                <ScalarProperty Name="DT_CADASTRO" ColumnName="DT_CADASTRO" />
+                <ScalarProperty Name="DS_DESCRICAO" ColumnName="DS_DESCRICAO" />
+                <ScalarProperty Name="DS_NOME" ColumnName="DS_NOME" />
+                <ScalarProperty Name="ID_DOCUMENTO" ColumnName="ID_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,55 @@
+﻿<div class="widgets" ng-controller="NotificacaoCtrl">
+
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Post"
+             ba-panel-class="with-scroll">
+            <form name="form" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_titulo.$pristine && form.ds_titulo.$invalid }">
+                                    <label for="ds_titulo">Título</label>
+                                    <input ng-model="notificacao.DS_TITULO" placeholder="Título" name="ds_titulo" ng-minlength="4" ng-required="true" class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{ 'has-error': !form.dt_notificacao.$pristine && form.dt_notificacao.$invalid }">
+                                    <label for="dt_cadastro">Data de Envio</label>
+                                    <div class="input-group">
+                                        <input ng-model="notificacao.DT_ENVIO" placeholder="Data de Envio" type="text" class="form-control" name="dt_notificacao" uib-datepicker-popup="dd/MM/yyyy" datepicker-options="optionsDatePicker" is-open="modelDatePicker.dt_cadastro" ng-required="true" close-text="Fechar" alt-input-formats="altInputFormats" show-button-bar="false" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 'dt_cadastro')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_horario.$pristine && form.ds_horario.$invalid }">
+                                    <label for="ds_titulo">Horário de Envio</label>
+                                    <input ng-model="notificacao.DT_HORARIO" placeholder="Horário" name="ds_horario" ng-required="true" class="form-control" type="time" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_mensagem.$pristine && form.ds_mensagem.$invalid }">
+                                    <label for="ds_post">Mensagem</label>
+                                    <textarea ng-model="notificacao.DS_MENSAGEM" placeholder="Mensagem" name="ds_mensagem" ng-minlength="4" ng-required="true" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <button class="btn btn-success btn-block" ng-disabled="form.$invalid" ng-click="salvar(notificacao)">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

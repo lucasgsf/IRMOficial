@@ -1,0 +1,30 @@
+﻿<div class="widgets" ng-controller="TipoUsuarioCtrl">
+
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Tipo de Usuário"
+             ba-panel-class="with-scroll">
+            <form name="form" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_tipo_usuario.$pristine && form.ds_tipo_usuario.$invalid }">
+                                    <label for="ds_tipo_usuario">Tipo de Usuário</label>
+                                    <input ng-model="tipo_usuario.DS_TIPO_USUARIO" placeholder="Tipo de Usuário" name="ds_tipo_usuario" ng-minlength="4" ng-required="true" class="form-control" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <button class="btn btn-success btn-block" ng-disabled="form.$invalid" ng-click="salvar(tipo_usuario)">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
