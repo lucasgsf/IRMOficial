@@ -80,7 +80,7 @@ namespace IRM_Oficial.Controllers
                     conteudo.DS_CONTEUDO = form["DS_CONTEUDO"].ToString();
                     conteudo.NR_ORDEM = Convert.ToInt32(form["NR_ORDEM"].ToString());
                     conteudo.IM_IMAGEM = new byte[0];
-                    conteudo.FL_VIDEO = Convert.ToBoolean(form["FL_VIDEO"].ToString());
+                    conteudo.FL_VIDEO = (form["FL_VIDEO"] != null && Convert.ToBoolean(form["FL_VIDEO"].ToString()));
                 }
 
                 if (Path.GetExtension(arq.FileName).ToString() == ".jpg" || Path.GetExtension(arq.FileName).ToString() == ".png" || Path.GetExtension(arq.FileName).ToString() == ".jpeg")

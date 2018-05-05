@@ -44,6 +44,22 @@ namespace IRM_Oficial.Controllers
             }
         }
 
+        [HttpGet]
+        public HttpResponseMessage getPostDetalhado(int id)
+        {
+            try
+            {
+                Post pst = new Post();
+                TB_POST post = new TB_POST();
+                post.ID_POST = id;
+                return Request.CreateResponse(HttpStatusCode.OK, pst.getPostDetalhado(post));
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, false);
+            }
+        }
+
         /*[HttpGet]
         public HttpResponseMessage getAudioPost(int id)
         {

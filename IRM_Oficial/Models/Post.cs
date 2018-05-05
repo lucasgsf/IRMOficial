@@ -42,6 +42,37 @@ namespace IRM_Oficial.Models
             return db.TB_POST.Find(post.ID_POST);
         }
 
+        public PostDTO getPostDetalhado(TB_POST post)
+        {
+            PostDTO postDTO = new PostDTO();
+            postDTO = (from ps in db.TB_POST
+                        join id in db.TB_IDIOMA
+                            on ps.ID_IDIOMA equals id.ID_IDIOMA
+                        join tp in db.TB_TIPO_POST
+                            on ps.ID_TIPO_POST equals tp.ID_TIPO_POST
+                        join ap in db.TB_ACOES_POST
+                            on ps.ID_POST equals ap.ID_POST
+                            into _ap
+                        where ps.ID_POST == post.ID_POST
+                        select new PostDTO
+                        {
+                            ID_POST = ps.ID_POST,
+                            DS_POST = ps.DS_POST,
+                            DS_TITULO = ps.DS_TITULO,
+                            DS_IDIOMA = id.DS_IDIOMA,
+                            ID_IDIOMA = ps.ID_IDIOMA,
+                            DS_TIPO_POST = tp.DS_TIPO_POST,
+                            ID_TIPO_POST = ps.ID_TIPO_POST,
+                            DT_CADASTRO = ps.DT_CADASTRO,
+                            NR_ORDEM = ps.NR_ORDEM,
+                            FL_FIXO = ps.FL_FIXO,
+                            IM_IMAGEM = ps.IM_IMAGEM,
+                            NR_CURTIDAS = _ap.Count(c => c.FL_CURTIR),
+                            NR_COMPARTILHAMENTOS = _ap.Count(c => c.FL_COMPARTILHAR)
+                        }).First();
+            return postDTO;
+        }
+
         public byte[] getAudioPost(TB_POST post)
         {
             TB_POST tbPost = db.TB_POST.Find(post.ID_POST);

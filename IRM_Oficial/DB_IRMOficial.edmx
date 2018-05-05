@@ -65,7 +65,7 @@
             <PropertyRef Name="ID_POST" />
           </Key>
           <Property Name="ID_POST" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DS_TITULO" Type="nvarchar" MaxLength="100" />
+          <Property Name="DS_TITULO" Type="nvarchar" MaxLength="255" />
           <Property Name="DS_POST" Type="nvarchar(max)" />
           <Property Name="IM_IMAGEM" Type="varbinary(max)" />
           <Property Name="DS_AUDIO" Type="varchar(max)" />
@@ -245,7 +245,7 @@
           <Property Name="ID_IDIOMA" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TB_IDIOMA" Relationship="Self.FK__TB_POST__ID_IDIO__2D27B809" FromRole="TB_POST" ToRole="TB_IDIOMA" />
           <NavigationProperty Name="TB_TIPO_POST" Relationship="Self.FK__TB_POST__ID_TIPO__2C3393D0" FromRole="TB_POST" ToRole="TB_TIPO_POST" />
-          <Property Name="DS_TITULO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DS_TITULO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="IM_IMAGEM" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="DS_AUDIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TB_ACOES_POST" Relationship="irmoficialModel.FK__TB_ACOES___ID_PO__4BAC3F29" FromRole="TB_POST" ToRole="TB_ACOES_POST" />

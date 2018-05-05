@@ -31,7 +31,6 @@ public partial class DB_IRMOficial : DbContext
         throw new UnintentionalCodeFirstException();
     }
 
-
     public virtual DbSet<TB_IDIOMA> TB_IDIOMA { get; set; }
 
     public virtual DbSet<TB_POST> TB_POST { get; set; }
