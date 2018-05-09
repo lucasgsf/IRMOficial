@@ -14,8 +14,9 @@ namespace IRM_Oficial.Models
         {
             List<ConteudoDTO> lstConteudos = new List<ConteudoDTO>();
             lstConteudos = (from ct in db.TB_CONTEUDO
-                            join ac in db.TB_ACOES_CONTEUDO
-                                on ct.ID_CONTEUDO equals ac.ID_CONTEUDO into _ap
+                            let curtidas = (from ac in db.TB_ACOES_CONTEUDO where ac.ID_CONTEUDO == ct.ID_CONTEUDO && ac.FL_CURTIR select ac.ID_ACOES_CONTEUDO).Count()
+                            //join ac in db.TB_ACOES_CONTEUDO
+                            //    on ct.ID_CONTEUDO equals ac.ID_CONTEUDO into _ap
                             orderby ct.NR_ORDEM ascending
                             select new ConteudoDTO
                             {
@@ -25,7 +26,7 @@ namespace IRM_Oficial.Models
                                 FL_VIDEO = ct.FL_VIDEO,
                                 IM_IMAGEM = ct.IM_IMAGEM,
                                 NR_ORDEM = ct.NR_ORDEM,
-                                NR_CURTIDAS = _ap.Count(c => c.FL_CURTIR),
+                                NR_CURTIDAS = curtidas,
                             }).ToList();
             return lstConteudos;
         }

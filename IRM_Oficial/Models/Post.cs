@@ -90,9 +90,11 @@ namespace IRM_Oficial.Models
                             on ps.ID_IDIOMA equals id.ID_IDIOMA
                         join tp in db.TB_TIPO_POST
                             on ps.ID_TIPO_POST equals tp.ID_TIPO_POST
-                        join ap in db.TB_ACOES_POST
-                            on ps.ID_POST equals ap.ID_POST
-                            into _ap
+                        //join ap in db.TB_ACOES_POST
+                        //    on ps.ID_POST equals ap.ID_POST
+                        //    into _ap
+                        let curtidas = (from ap in db.TB_ACOES_POST where ap.ID_POST == ps.ID_POST && ap.FL_CURTIR select ap.ID_ACOES_POST).Count()
+                        let compartilhamentos = (from ap in db.TB_ACOES_POST where ap.ID_POST == ps.ID_POST && ap.FL_COMPARTILHAR select ap.ID_ACOES_POST).Count()
                         where (DbFunctions.TruncateTime(ps.DT_CADASTRO) == data.Date || (ps.FL_FIXO.HasValue && ps.FL_FIXO.Value))
                             && (!String.IsNullOrEmpty(ps.DS_AUDIO))
                         orderby ps.NR_ORDEM
@@ -109,8 +111,8 @@ namespace IRM_Oficial.Models
                             NR_ORDEM = ps.NR_ORDEM,
                             FL_FIXO = ps.FL_FIXO,
                             IM_IMAGEM = ps.IM_IMAGEM,
-                            NR_CURTIDAS = _ap.Count(c => c.FL_CURTIR),
-                            NR_COMPARTILHAMENTOS = _ap.Count(c => c.FL_COMPARTILHAR)
+                            NR_CURTIDAS = curtidas,
+                            NR_COMPARTILHAMENTOS = compartilhamentos
                         }).ToList();
             return lstPosts;
         }

@@ -36,8 +36,11 @@ namespace IRM_Oficial.Models
         public void cadLoginUsuario(TB_USUARIO usuario)
         {
             TB_USUARIO_LOGIN login = new TB_USUARIO_LOGIN();
-            if (usuario.ID_USUARIO != 0 && db.TB_USUARIO_LOGIN.Where(c => c.ID_USUARIO == usuario.ID_USUARIO && DbFunctions.TruncateTime(c.DT_LOGIN) == DbFunctions.TruncateTime(DateTime.Now)).Count() == 0)
+            login = db.TB_USUARIO_LOGIN.Where(c => c.ID_USUARIO == usuario.ID_USUARIO).OrderByDescending(c => c.DT_LOGIN).FirstOrDefault();
+
+            if (usuario.ID_USUARIO != 0 && login != null && login.DT_LOGIN.Date != DateTime.Now.Date)
             {
+                login = new TB_USUARIO_LOGIN();
                 login.ID_USUARIO = usuario.ID_USUARIO;
                 login.DT_LOGIN = DateTime.Now;
                 db.TB_USUARIO_LOGIN.Add(login);
@@ -45,6 +48,7 @@ namespace IRM_Oficial.Models
             }
             else if (usuario.ID_USUARIO == 0)
             {
+                login = new TB_USUARIO_LOGIN();
                 login.DT_LOGIN = DateTime.Now;
                 db.TB_USUARIO_LOGIN.Add(login);
                 db.SaveChanges();
