@@ -23,7 +23,8 @@ namespace IRM_Oficial.Models
                                 DT_CADASTRO = ct.DT_CADASTRO,
                                 FL_FIXO = ct.FL_FIXO,
                                 ID_DOCUMENTO = ct.ID_DOCUMENTO,
-                                DS_ARQUIVO = ct.DS_ARQUIVO
+                                DS_ARQUIVO = ct.DS_ARQUIVO,
+                                NR_ORDEM = ct.NR_ORDEM
                             }).ToList();
             return lstConteudos;
         }
@@ -42,7 +43,8 @@ namespace IRM_Oficial.Models
                                 DT_CADASTRO = ct.DT_CADASTRO,
                                 FL_FIXO = ct.FL_FIXO,
                                 ID_DOCUMENTO = ct.ID_DOCUMENTO,
-                                DS_ARQUIVO = ct.DS_ARQUIVO
+                                DS_ARQUIVO = ct.DS_ARQUIVO,
+                                NR_ORDEM = ct.NR_ORDEM
                             }).ToList();
             return lstConteudos;
         }

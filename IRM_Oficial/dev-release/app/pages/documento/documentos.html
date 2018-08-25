@@ -17,10 +17,11 @@
                             <tr class="sortable ">
                                 <th class="table-id" st-sort="id" st-sort-default="true">#</th>
                                 <th st-sort="DS_NOME">Nome do Documento</th>
+                                <th st-sort="NR_ORDEM">Ordem</th>
                                 <th>Ações</th>
                             </tr>
                             <tr>
-                                <th colspan="3">
+                                <th colspan="4">
                                     <input st-search="" placeholder="Pesquisar" class="input-sm form-control search-input"
                                            type="search" />
                                 </th>
@@ -30,6 +31,7 @@
                             <tr ng-repeat="item in displayedList">
                                 <td class="table-id">{{item.ID_DOCUMENTO}}</td>
                                 <td>{{item.DS_NOME}}</td>
+                                <td>{{item.NR_ORDEM}}</td>
                                 <td>
                                     <button class="btn btn-warning btn-with-icon" style="margin: 5px;" ng-click="edit(item)"><i class="ion-edit"></i>Editar</button>
                                     <button class="btn btn-danger btn-with-icon" style="margin: 5px;" ng-click="delete(item)"><i class="ion-trash-a"></i>Excluir</button>
@@ -38,7 +40,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="3" class="text-center">
+                                <td colspan="4" class="text-center">
                                     <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
                                 </td>
                             </tr>
