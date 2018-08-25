@@ -23,6 +23,12 @@
         <AssociationConnector Association="irmoficialModel.FK_TB_ACOES_CONTEUDO_TB_CONTEUDO" />
         <AssociationConnector Association="irmoficialModel.FK_TB_ACOES_CONTEUDO_TB_USUARIO" />
         <EntityTypeShape EntityType="irmoficialModel.TB_DOCUMENTO" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="irmoficialModel.VW_ACESSOS_HOJE" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="irmoficialModel.VW_ACESSOS_TOTAIS" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="irmoficialModel.VW_CURTIDAS_AUDIO" Width="1.5" PointX="3.375" PointY="9.75" />
+        <EntityTypeShape EntityType="irmoficialModel.VW_COMPARTILHAMENTOS_AUDIO" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="irmoficialModel.VW_PLAYS_AUDIO" Width="1.5" PointX="9.375" PointY="7.75" />
+        <EntityTypeShape EntityType="irmoficialModel.VW_NOVOS_USUARIOS" Width="1.5" PointX="7.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

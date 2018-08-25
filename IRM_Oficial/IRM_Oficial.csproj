@@ -272,6 +272,24 @@
     <Compile Include="TB_USUARIO_LOGIN.cs">
       <DependentUpon>DB_IRMOficial.tt</DependentUpon>
     </Compile>
+    <Compile Include="VW_ACESSOS_HOJE.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_ACESSOS_TOTAIS.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_COMPARTILHAMENTOS_AUDIO.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_CURTIDAS_AUDIO.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_NOVOS_USUARIOS.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_PLAYS_AUDIO.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

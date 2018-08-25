@@ -23,13 +23,14 @@ public partial class DB_IRMOficial : DbContext
     public DB_IRMOficial()
         : base("name=DB_IRMOficial")
     {
-        this.Configuration.LazyLoadingEnabled = false;
+
     }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
         throw new UnintentionalCodeFirstException();
     }
+
 
     public virtual DbSet<TB_IDIOMA> TB_IDIOMA { get; set; }
 
@@ -50,6 +51,18 @@ public partial class DB_IRMOficial : DbContext
     public virtual DbSet<TB_ACOES_CONTEUDO> TB_ACOES_CONTEUDO { get; set; }
 
     public virtual DbSet<TB_DOCUMENTO> TB_DOCUMENTO { get; set; }
+
+    public virtual DbSet<VW_ACESSOS_HOJE> VW_ACESSOS_HOJE { get; set; }
+
+    public virtual DbSet<VW_ACESSOS_TOTAIS> VW_ACESSOS_TOTAIS { get; set; }
+
+    public virtual DbSet<VW_CURTIDAS_AUDIO> VW_CURTIDAS_AUDIO { get; set; }
+
+    public virtual DbSet<VW_COMPARTILHAMENTOS_AUDIO> VW_COMPARTILHAMENTOS_AUDIO { get; set; }
+
+    public virtual DbSet<VW_PLAYS_AUDIO> VW_PLAYS_AUDIO { get; set; }
+
+    public virtual DbSet<VW_NOVOS_USUARIOS> VW_NOVOS_USUARIOS { get; set; }
 
 }
 

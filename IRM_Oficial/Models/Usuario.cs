@@ -159,23 +159,17 @@ namespace IRM_Oficial.Models
 
         public int totalUsuarios(DateTime inicio, DateTime fim)
         {
-            return db.TB_USUARIO.Where(c => DbFunctions.TruncateTime(c.DT_CADASTRO) >= inicio.Date && DbFunctions.TruncateTime(c.DT_CADASTRO) <= fim.Date).Count();
+            return db.VW_NOVOS_USUARIOS.Where(c => DbFunctions.TruncateTime(c.DATA) >= inicio.Date && DbFunctions.TruncateTime(c.DATA) <= fim.Date).Sum(c => c.CADASTROS);
         }
 
         public int acessosHoje()
         {
-            DateTime hoje = PegaHoraBrasilia().Date;
-            return db.TB_USUARIO_LOGIN.Where(c => DbFunctions.TruncateTime(c.DT_LOGIN) >= hoje).Count();
+            return db.VW_ACESSOS_HOJE.FirstOrDefault().ACESSOS;
         }
 
         public int acessosTotais()
         {
-            return db.TB_USUARIO_LOGIN.ToList().Count();
-        }
-
-        public static DateTime PegaHoraBrasilia()
-        {
-            return TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
+            return db.VW_ACESSOS_TOTAIS.FirstOrDefault().ACESSOS;
         }
     }
 }

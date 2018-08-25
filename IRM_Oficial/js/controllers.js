@@ -114,7 +114,24 @@ function ($scope, $rootScope, $sce, $ionicPlatform, $state, $stateParams, $windo
 			AcoesPostService.cadAcoesPost(acaoPost).then(function(response){});
 			$window.localStorage["acoes"] = JSON.stringify(acoes);
 		}
-	};
+    };
+
+    $scope.downloadAudio = function (item) {
+        var linkElement = document.createElement('a');
+        try {
+            linkElement.setAttribute('href', "../posts/" + item.ID_POST + "/audio.mp3");
+            linkElement.setAttribute("download", item.DS_TITULO + ".mp3");
+
+            var clickEvent = new MouseEvent("click", {
+                "view": window,
+                "bubbles": true,
+                "cancelable": false
+            });
+            linkElement.dispatchEvent(clickEvent);
+        } catch (ex) {
+            console.log(ex);
+        }
+    };
 
 	$scope.getCurtirPost = function(item){
 		var acoes = [];

@@ -62,8 +62,8 @@ namespace IRM_Oficial.Controllers
             try
             {
                 Documento doc = new Documento ();
-                doc.cadDocumento(documento);
-                return Request.CreateResponse(HttpStatusCode.OK, true);
+                int Id = doc.cadDocumento(documento);
+                return Request.CreateResponse(HttpStatusCode.OK, new { valid = true, id = Id });
             }
             catch (Exception)
             {
@@ -87,33 +87,24 @@ namespace IRM_Oficial.Controllers
                 {
                     documento.ID_DOCUMENTO = Convert.ToInt32(form["ID_DOCUMENTO"].ToString());
                     documento = ct.getDocumento(documento);
-                }
-                else
-                {
-                    documento.DS_DESCRICAO = form["DS_DESCRICAO"].ToString();
-                    documento.DS_NOME = form["DS_NOME"].ToString();
-                    documento.NR_ORDEM = Convert.ToInt32(form["NR_ORDEM"].ToString());
-                    documento.FL_FIXO = Convert.ToBoolean(form["FL_FIXO"].ToString());
-                    documento.IM_DOCUMENTO = new byte[0];
-                    documento.DT_CADASTRO = DateTime.Parse(form["DT_CADASTRO"].ToString());
-                }
-
-                if (Path.GetExtension(arq.FileName).ToString() == ".pdf")
-                {
-                    byte[] fileData = null;
-                    using (var binaryReader = new BinaryReader(arq.InputStream))
+                    
+                    if (Path.GetExtension(arq.FileName).ToString() == ".pdf")
                     {
-                        fileData = binaryReader.ReadBytes(arq.ContentLength);
+                        string path = System.AppDomain.CurrentDomain.BaseDirectory + "//documentos";
+                        if (!Directory.Exists(path))
+                            Directory.CreateDirectory(path);
+                        path += "//" + documento.ID_DOCUMENTO + ".pdf";
+                        arq.SaveAs(path);
+                        documento.DS_ARQUIVO = path;
                     }
-                    documento.IM_DOCUMENTO = fileData;
-                }
 
-                if (form["IM_DOCUMENTO"] == null)
-                    ct.cadDocumento(documento);
-                else
                     ct.altDocumento(documento);
-
-                return Request.CreateResponse(HttpStatusCode.OK, documento.ID_DOCUMENTO);
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, false);
+                }
             }
             catch (Exception e)
             {

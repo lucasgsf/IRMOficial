@@ -56,14 +56,7 @@ namespace IRM_Oficial.Models
 
         public int totalCurtidas(DateTime inicio, DateTime fim)
         {
-            return (from ap in db.TB_ACOES_POST
-                    where DbFunctions.TruncateTime(ap.DT_ACAO_CURTIR) >= inicio.Date
-                        && DbFunctions.TruncateTime(ap.DT_ACAO_CURTIR) <= fim.Date
-                        && ap.FL_CURTIR
-                    select new PostDTO
-                    {
-                        ID_POST = ap.ID_POST
-                    }).Count();
+            return db.VW_CURTIDAS_AUDIO.Where(c => DbFunctions.TruncateTime(c.DATA) >= inicio.Date && DbFunctions.TruncateTime(c.DATA) <= fim.Date).Sum(c => c.INTERACOES);
         }
 
         public int totalNaoCurtidas(DateTime inicio, DateTime fim)
@@ -80,26 +73,12 @@ namespace IRM_Oficial.Models
 
         public int totalCompartilhamentos(DateTime inicio, DateTime fim)
         {
-            return (from ap in db.TB_ACOES_POST
-                    where DbFunctions.TruncateTime(ap.DT_ACAO_COMPARTILHAR) >= inicio.Date
-                        && DbFunctions.TruncateTime(ap.DT_ACAO_COMPARTILHAR) <= fim.Date
-                        && ap.FL_COMPARTILHAR
-                    select new PostDTO
-                    {
-                        ID_POST = ap.ID_POST
-                    }).Count();
+            return db.VW_COMPARTILHAMENTOS_AUDIO.Where(c => DbFunctions.TruncateTime(c.DATA) >= inicio.Date && DbFunctions.TruncateTime(c.DATA) <= fim.Date).Sum(c => c.INTERACOES);
         }
 
         public int totalPlays(DateTime inicio, DateTime fim)
         {
-            return (from ap in db.TB_ACOES_POST
-                    where DbFunctions.TruncateTime(ap.DT_ACAO_PLAY) >= inicio.Date
-                        && DbFunctions.TruncateTime(ap.DT_ACAO_PLAY) <= fim.Date
-                        && ap.FL_PLAY
-                    select new PostDTO
-                    {
-                        ID_POST = ap.ID_POST
-                    }).Count();
+            return db.VW_PLAYS_AUDIO.Where(c => DbFunctions.TruncateTime(c.DATA) >= inicio.Date && DbFunctions.TruncateTime(c.DATA) <= fim.Date).Sum(c => c.INTERACOES);
         }
     }
 }

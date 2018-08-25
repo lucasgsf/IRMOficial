@@ -11,8 +11,8 @@ namespace IRM_Oficial.DTO
         public string DS_NOME { get; set; }
         public string DS_DESCRICAO { get; set; }
         public System.DateTime DT_CADASTRO { get; set; }
-        public bool FL_FIXO { get; set; }
+        public Nullable<bool> FL_FIXO { get; set; }
         public int NR_ORDEM { get; set; }
-        public byte[] IM_DOCUMENTO { get; set; }
+        public string DS_ARQUIVO { get; set; }
     }
 }

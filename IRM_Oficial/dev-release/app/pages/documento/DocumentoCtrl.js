@@ -39,8 +39,8 @@
                   $scope.openToast("success", "Sucesso!", "Exclusão realizada com sucesso!");
               else
                   $scope.openToast("error", "Erro!", "Erro ao realizar a exclusão!");
+              Listar();
           });
-          Listar();
       }
 
       Listar();
@@ -104,7 +104,9 @@
       $scope.salvar = function (item) {
           var documento = {};
           angular.copy(item, documento);
-          
+
+          documento.DT_CADASTRO = (documento.DT_CADASTRO) ? documento.DT_CADASTRO.toISOString() : null;
+
           $scope.uploader.onBeforeUploadItem = function (item) {
               var form = angular.copy(documento, form);
               item.formData.push(form);
@@ -112,39 +114,36 @@
           };
 
           $scope.uploader.onCompleteItem = function (item, response, status, headers) {
-              console.log(response);
-              documento.ID_DOCUMENTO = response;
+              console.log(item, response);
               if (!response)
                   $scope.sucesso = false;
           };
+
+          $scope.uploader.onCompleteAll = function () {
+              if ($scope.sucesso)
+                  $scope.openToast("success", "Sucesso!", "Cadastro realizado com sucesso!");
+              else
+                  $scope.openToast("error", "Erro!", "Erro ao realizar o cadastro!");
+              $state.go("documentos");
+          };
           
           if ($scope.uploader.queue.length > 0) {
-              $scope.uploader.uploadAll();
-
-              $scope.uploader.onCompleteAll = function () {
-                  if ($scope.sucesso)
-                      $scope.openToast("success", "Sucesso!", "Cadastro realizado com sucesso!");
+              DocumentoService.cadDocumento(documento).then(function (response) {
+                  if (response.valid) {
+                      documento.ID_DOCUMENTO = response.id;
+                      $scope.uploader.uploadAll();
+                  }
                   else
-                      $scope.openToast("error", "Erro!", "Erro ao realizar o cadastro!");
-                  $state.go("documentos");
-              };
+                      $scope.sucesso = false;
+              });
           }
-          else if (conteudo.ID_CONTEUDO) {
+          else if (documento.ID_DOCUMENTO) {
               DocumentoService.altDocumento(documento).then(function (response) {
                   if (response)
                       $scope.openToast("success", "Sucesso!", "Alteração realizada com sucesso!");
                   else
                       $scope.openToast("error", "Erro!", "Erro ao realizar a alteração!");
                   $state.go("documentos");
-              });
-          }
-          else {
-              DocumentoService.cadDocumento(conteudo).then(function (response) {
-                  if (response)
-                      $scope.openToast("success", "Sucesso!", "Cadastro realizado com sucesso!");
-                  else
-                      $scope.openToast("error", "Erro!", "Erro ao realizar o cadastro!");
-                  $state.go("conteudos");
               });
           }
       }

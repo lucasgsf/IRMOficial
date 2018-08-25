@@ -46,12 +46,12 @@
             <PropertyRef Name="ID_DOCUMENTO" />
           </Key>
           <Property Name="ID_DOCUMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DS_NOME" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="DS_DESCRICAO" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DS_NOME" Type="varchar" MaxLength="100" />
+          <Property Name="DS_DESCRICAO" Type="nvarchar(max)" />
           <Property Name="DT_CADASTRO" Type="datetime" Nullable="false" />
-          <Property Name="FL_FIXO" Type="bit" Nullable="false" />
+          <Property Name="FL_FIXO" Type="bit" />
           <Property Name="NR_ORDEM" Type="int" Nullable="false" />
-          <Property Name="IM_DOCUMENTO" Type="varbinary(max)" Nullable="false" />
+          <Property Name="DS_ARQUIVO" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="TB_IDIOMA">
           <Key>
@@ -112,6 +112,58 @@
           <Property Name="DT_LOGIN" Type="datetime" Nullable="false" />
           <Property Name="ID_USUARIO" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_ACESSOS_HOJE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_ACESSOS_HOJE">
+          <Key>
+            <PropertyRef Name="ACESSOS" />
+          </Key>
+          <Property Name="ACESSOS" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_ACESSOS_TOTAIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_ACESSOS_TOTAIS">
+          <Key>
+            <PropertyRef Name="ACESSOS" />
+          </Key>
+          <Property Name="ACESSOS" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_COMPARTILHAMENTOS_AUDIO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_COMPARTILHAMENTOS_AUDIO">
+          <Key>
+            <PropertyRef Name="INTERACOES" />
+          </Key>
+          <Property Name="INTERACOES" Type="int" Nullable="false" />
+          <Property Name="DATA" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_CURTIDAS_AUDIO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_CURTIDAS_AUDIO">
+          <Key>
+            <PropertyRef Name="INTERACOES" />
+          </Key>
+          <Property Name="INTERACOES" Type="int" Nullable="false" />
+          <Property Name="DATA" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_NOVOS_USUARIOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_NOVOS_USUARIOS">
+          <Key>
+            <PropertyRef Name="CADASTROS" />
+          </Key>
+          <Property Name="CADASTROS" Type="int" Nullable="false" />
+          <Property Name="DATA" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_PLAYS_AUDIO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_PLAYS_AUDIO">
+          <Key>
+            <PropertyRef Name="INTERACOES" />
+          </Key>
+          <Property Name="INTERACOES" Type="int" Nullable="false" />
+          <Property Name="DATA" Type="date" />
+        </EntityType>
         <Association Name="FK__TB_ACOES___ID_PO__5629CD9C">
           <End Role="TB_POST" Type="Self.TB_POST" Multiplicity="1" />
           <End Role="TB_ACOES_POST" Type="Self.TB_ACOES_POST" Multiplicity="*" />
@@ -151,7 +203,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TB_ACOES_CONTEUDO_TB_CONTEUDO">
-          <End Role="TB_CONTEUDO" Type="Self.TB_CONTEUDO" Multiplicity="1" />
+          <End Role="TB_CONTEUDO" Type="Self.TB_CONTEUDO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TB_ACOES_CONTEUDO" Type="Self.TB_ACOES_CONTEUDO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TB_CONTEUDO">
@@ -197,6 +251,40 @@
           <EntitySet Name="TB_TIPO_USUARIO" EntityType="Self.TB_TIPO_USUARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_USUARIO" EntityType="Self.TB_USUARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_USUARIO_LOGIN" EntityType="Self.TB_USUARIO_LOGIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_ACESSOS_HOJE" EntityType="Self.VW_ACESSOS_HOJE" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_ACESSOS_HOJE].[ACESSOS] AS [ACESSOS]
+    FROM [dbo].[VW_ACESSOS_HOJE] AS [VW_ACESSOS_HOJE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_ACESSOS_TOTAIS" EntityType="Self.VW_ACESSOS_TOTAIS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_ACESSOS_TOTAIS].[ACESSOS] AS [ACESSOS]
+    FROM [dbo].[VW_ACESSOS_TOTAIS] AS [VW_ACESSOS_TOTAIS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_COMPARTILHAMENTOS_AUDIO" EntityType="Self.VW_COMPARTILHAMENTOS_AUDIO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_COMPARTILHAMENTOS_AUDIO].[INTERACOES] AS [INTERACOES], 
+    [VW_COMPARTILHAMENTOS_AUDIO].[DATA] AS [DATA]
+    FROM [dbo].[VW_COMPARTILHAMENTOS_AUDIO] AS [VW_COMPARTILHAMENTOS_AUDIO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_CURTIDAS_AUDIO" EntityType="Self.VW_CURTIDAS_AUDIO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_CURTIDAS_AUDIO].[INTERACOES] AS [INTERACOES], 
+    [VW_CURTIDAS_AUDIO].[DATA] AS [DATA]
+    FROM [dbo].[VW_CURTIDAS_AUDIO] AS [VW_CURTIDAS_AUDIO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_NOVOS_USUARIOS" EntityType="Self.VW_NOVOS_USUARIOS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_NOVOS_USUARIOS].[CADASTROS] AS [CADASTROS], 
+    [VW_NOVOS_USUARIOS].[DATA] AS [DATA]
+    FROM [dbo].[VW_NOVOS_USUARIOS] AS [VW_NOVOS_USUARIOS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_PLAYS_AUDIO" EntityType="Self.VW_PLAYS_AUDIO" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_PLAYS_AUDIO].[INTERACOES] AS [INTERACOES], 
+    [VW_PLAYS_AUDIO].[DATA] AS [DATA]
+    FROM [dbo].[VW_PLAYS_AUDIO] AS [VW_PLAYS_AUDIO]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__TB_ACOES___ID_PO__5629CD9C" Association="Self.FK__TB_ACOES___ID_PO__5629CD9C">
             <End Role="TB_POST" EntitySet="TB_POST" />
             <End Role="TB_ACOES_POST" EntitySet="TB_ACOES_POST" />
@@ -366,6 +454,12 @@
             <End Role="TB_ACOES_CONTEUDO" EntitySet="TB_ACOES_CONTEUDO" />
           </AssociationSet>
           <EntitySet Name="TB_DOCUMENTO" EntityType="irmoficialModel.TB_DOCUMENTO" />
+          <EntitySet Name="VW_ACESSOS_HOJE" EntityType="irmoficialModel.VW_ACESSOS_HOJE" />
+          <EntitySet Name="VW_ACESSOS_TOTAIS" EntityType="irmoficialModel.VW_ACESSOS_TOTAIS" />
+          <EntitySet Name="VW_CURTIDAS_AUDIO" EntityType="irmoficialModel.VW_CURTIDAS_AUDIO" />
+          <EntitySet Name="VW_COMPARTILHAMENTOS_AUDIO" EntityType="irmoficialModel.VW_COMPARTILHAMENTOS_AUDIO" />
+          <EntitySet Name="VW_PLAYS_AUDIO" EntityType="irmoficialModel.VW_PLAYS_AUDIO" />
+          <EntitySet Name="VW_NOVOS_USUARIOS" EntityType="irmoficialModel.VW_NOVOS_USUARIOS" />
         </EntityContainer>
         <EntityType Name="TB_ACOES_POST">
           <Key>
@@ -482,12 +576,52 @@
             <PropertyRef Name="ID_DOCUMENTO" />
           </Key>
           <Property Name="ID_DOCUMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DS_NOME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DS_DESCRICAO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DS_NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DS_DESCRICAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DT_CADASTRO" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FL_FIXO" Type="Boolean" Nullable="false" />
+          <Property Name="FL_FIXO" Type="Boolean" />
           <Property Name="NR_ORDEM" Type="Int32" Nullable="false" />
-          <Property Name="IM_DOCUMENTO" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="DS_ARQUIVO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_ACESSOS_HOJE">
+          <Key>
+            <PropertyRef Name="ACESSOS" />
+          </Key>
+          <Property Name="ACESSOS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_ACESSOS_TOTAIS">
+          <Key>
+            <PropertyRef Name="ACESSOS" />
+          </Key>
+          <Property Name="ACESSOS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_CURTIDAS_AUDIO">
+          <Key>
+            <PropertyRef Name="INTERACOES" />
+          </Key>
+          <Property Name="INTERACOES" Type="Int32" Nullable="false" />
+          <Property Name="DATA" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="VW_COMPARTILHAMENTOS_AUDIO">
+          <Key>
+            <PropertyRef Name="INTERACOES" />
+          </Key>
+          <Property Name="INTERACOES" Type="Int32" Nullable="false" />
+          <Property Name="DATA" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="VW_PLAYS_AUDIO">
+          <Key>
+            <PropertyRef Name="INTERACOES" />
+          </Key>
+          <Property Name="INTERACOES" Type="Int32" Nullable="false" />
+          <Property Name="DATA" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="VW_NOVOS_USUARIOS">
+          <Key>
+            <PropertyRef Name="CADASTROS" />
+          </Key>
+          <Property Name="CADASTROS" Type="Int32" Nullable="false" />
+          <Property Name="DATA" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -602,13 +736,59 @@
           <EntitySetMapping Name="TB_DOCUMENTO">
             <EntityTypeMapping TypeName="irmoficialModel.TB_DOCUMENTO">
               <MappingFragment StoreEntitySet="TB_DOCUMENTO">
-                <ScalarProperty Name="IM_DOCUMENTO" ColumnName="IM_DOCUMENTO" />
+                <ScalarProperty Name="DS_ARQUIVO" ColumnName="DS_ARQUIVO" />
                 <ScalarProperty Name="NR_ORDEM" ColumnName="NR_ORDEM" />
                 <ScalarProperty Name="FL_FIXO" ColumnName="FL_FIXO" />
                 <ScalarProperty Name="DT_CADASTRO" ColumnName="DT_CADASTRO" />
                 <ScalarProperty Name="DS_DESCRICAO" ColumnName="DS_DESCRICAO" />
                 <ScalarProperty Name="DS_NOME" ColumnName="DS_NOME" />
                 <ScalarProperty Name="ID_DOCUMENTO" ColumnName="ID_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_ACESSOS_HOJE">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_ACESSOS_HOJE">
+              <MappingFragment StoreEntitySet="VW_ACESSOS_HOJE">
+                <ScalarProperty Name="ACESSOS" ColumnName="ACESSOS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_ACESSOS_TOTAIS">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_ACESSOS_TOTAIS">
+              <MappingFragment StoreEntitySet="VW_ACESSOS_TOTAIS">
+                <ScalarProperty Name="ACESSOS" ColumnName="ACESSOS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_CURTIDAS_AUDIO">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_CURTIDAS_AUDIO">
+              <MappingFragment StoreEntitySet="VW_CURTIDAS_AUDIO">
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="INTERACOES" ColumnName="INTERACOES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_COMPARTILHAMENTOS_AUDIO">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_COMPARTILHAMENTOS_AUDIO">
+              <MappingFragment StoreEntitySet="VW_COMPARTILHAMENTOS_AUDIO">
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="INTERACOES" ColumnName="INTERACOES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_PLAYS_AUDIO">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_PLAYS_AUDIO">
+              <MappingFragment StoreEntitySet="VW_PLAYS_AUDIO">
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="INTERACOES" ColumnName="INTERACOES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_NOVOS_USUARIOS">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_NOVOS_USUARIOS">
+              <MappingFragment StoreEntitySet="VW_NOVOS_USUARIOS">
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="CADASTROS" ColumnName="CADASTROS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

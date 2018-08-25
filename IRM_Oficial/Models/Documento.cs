@@ -22,8 +22,8 @@ namespace IRM_Oficial.Models
                                 DS_NOME = ct.DS_NOME,
                                 DT_CADASTRO = ct.DT_CADASTRO,
                                 FL_FIXO = ct.FL_FIXO,
-                                ID_DOCUMENTO = ct.ID_DOCUMENTO
-,
+                                ID_DOCUMENTO = ct.ID_DOCUMENTO,
+                                DS_ARQUIVO = ct.DS_ARQUIVO
                             }).ToList();
             return lstConteudos;
         }
@@ -33,7 +33,7 @@ namespace IRM_Oficial.Models
             data = data.Date;
             List<DocumentoDTO> lstConteudos = new List<DocumentoDTO>();
             lstConteudos = (from ct in db.TB_DOCUMENTO
-                            where (DbFunctions.TruncateTime(ct.DT_CADASTRO) == data) || ct.FL_FIXO
+                            where (DbFunctions.TruncateTime(ct.DT_CADASTRO) == data) || (ct.FL_FIXO.HasValue && ct.FL_FIXO.Value)
                             orderby ct.NR_ORDEM ascending
                             select new DocumentoDTO
                             {
@@ -41,40 +41,41 @@ namespace IRM_Oficial.Models
                                 DS_NOME = ct.DS_NOME,
                                 DT_CADASTRO = ct.DT_CADASTRO,
                                 FL_FIXO = ct.FL_FIXO,
-                                ID_DOCUMENTO = ct.ID_DOCUMENTO
-,
+                                ID_DOCUMENTO = ct.ID_DOCUMENTO,
+                                DS_ARQUIVO = ct.DS_ARQUIVO
                             }).ToList();
             return lstConteudos;
         }
 
-        public TB_DOCUMENTO getDocumento(TB_DOCUMENTO conteudo)
+        public TB_DOCUMENTO getDocumento(TB_DOCUMENTO documento)
         {
-            return db.TB_DOCUMENTO.Find(conteudo.ID_DOCUMENTO);
+            return db.TB_DOCUMENTO.Find(documento.ID_DOCUMENTO);
         }
 
-        public void cadDocumento(TB_DOCUMENTO conteudo)
+        public int cadDocumento(TB_DOCUMENTO documento)
         {
-            db.TB_DOCUMENTO.Add(conteudo);
+            db.TB_DOCUMENTO.Add(documento);
             db.SaveChanges();
+            return documento.ID_DOCUMENTO;
         }
 
-        public void altDocumento(TB_DOCUMENTO conteudo)
+        public void altDocumento(TB_DOCUMENTO documento)
         {
-            TB_DOCUMENTO conteudo_old = db.TB_DOCUMENTO.Find(conteudo.ID_DOCUMENTO);
-            if(conteudo_old != null)
+            TB_DOCUMENTO documento_old = db.TB_DOCUMENTO.Find(documento.ID_DOCUMENTO);
+            if(documento_old != null)
             {
-                conteudo_old.DS_DESCRICAO = conteudo.DS_DESCRICAO;
-                conteudo_old.DS_NOME = conteudo.DS_NOME;
-                conteudo_old.DT_CADASTRO = conteudo.DT_CADASTRO;
-                conteudo_old.FL_FIXO = conteudo.FL_FIXO;
-                conteudo_old.NR_ORDEM = conteudo.NR_ORDEM;
+                documento_old.DS_DESCRICAO = documento.DS_DESCRICAO;
+                documento_old.DS_NOME = documento.DS_NOME;
+                documento_old.DT_CADASTRO = documento.DT_CADASTRO;
+                documento_old.FL_FIXO = documento.FL_FIXO;
+                documento_old.NR_ORDEM = documento.NR_ORDEM;
                 db.SaveChanges();
             }
         }
 
-        public void delDocumento(TB_DOCUMENTO conteudo)
+        public void delDocumento(TB_DOCUMENTO documento)
         {
-            db.TB_DOCUMENTO.Remove(db.TB_DOCUMENTO.Find(conteudo.ID_DOCUMENTO));
+            db.TB_DOCUMENTO.Remove(db.TB_DOCUMENTO.Find(documento.ID_DOCUMENTO));
             db.SaveChanges();
         }
     }

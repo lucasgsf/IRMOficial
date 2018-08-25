@@ -39,8 +39,8 @@
                   $scope.openToast("success", "Sucesso!", "Exclusão realizada com sucesso!");
               else
                   $scope.openToast("error", "Erro!", "Erro ao realizar a exclusão!");
+              Listar();
           });
-          Listar();
       }
 
       Listar();
