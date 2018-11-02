@@ -1,0 +1,64 @@
+﻿<div class="widgets" ng-controller="RankCtrl">
+
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-md-2 col-md-offset-4">
+            <button class="btn btn-primary btn-block" csv-header="['Posicao', 'Nome', 'Compartilhamentos', 'Curtidas', 'Plays', 'Total']" ng-csv="gerarExcel()" filename="IRMOficial_Rank.csv" field-separator=";">Exportar Rank</button>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-info btn-block" ng-click="listarSemanal()">Semanal</button>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-info btn-block" ng-click="listarMensal()">Mensal</button>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-info btn-block" ng-click="listarGeral()">Geral</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Ranking"
+             ba-panel-class="with-scroll">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table" st-table="displayedList" st-safe-src="safeList">
+                        <thead>
+                            <tr class="sortable ">
+                                <th class="table-id" st-sort="POSICAO_RANK" st-sort-default="true">#</th>
+                                <th st-sort="DS_NOME">Nome</th>
+                                <th st-sort="COMPARTILHAMENTO">Compartilhamentos</th>
+                                <th st-sort="CURTIR">Curtidas</th>
+                                <th st-sort="PLAY">Plays</th>
+                                <th st-sort="TOTAL">Total</th>
+                            </tr>
+                            <tr>
+                                <th colspan="6">
+                                    <input st-search="" placeholder="Pesquisar" class="input-sm form-control search-input"
+                                           type="search" />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in displayedList">
+                                <td class="table-id">{{item.POSICAO_RANK}}</td>
+                                <td>{{item.DS_NOME}}</td>
+                                <td>{{item.COMPARTILHAMENTO}}</td>
+                                <td>{{item.CURTIR}}</td>
+                                <td>{{item.PLAY}}</td>
+                                <td>{{item.TOTAL}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

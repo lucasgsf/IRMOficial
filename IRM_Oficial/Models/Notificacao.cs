@@ -55,8 +55,8 @@ namespace IRM_Oficial.Models
             }
             catch (WebException ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                System.Diagnostics.Debug.WriteLine(new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
+                //System.Diagnostics.Debug.WriteLine(ex.Message);
+                //System.Diagnostics.Debug.WriteLine(new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
             }
 
             return (String.IsNullOrEmpty(responseContent)) ? false : true;

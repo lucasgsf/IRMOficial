@@ -23,6 +23,7 @@
     'BlurAdmin.pages.notificacao',
     'BlurAdmin.pages.documento',
     'BlurAdmin.pages.documentos',
+    'BlurAdmin.pages.rank',
     //'BlurAdmin.pages.ui',
     //'BlurAdmin.pages.components',
     //'BlurAdmin.pages.form',

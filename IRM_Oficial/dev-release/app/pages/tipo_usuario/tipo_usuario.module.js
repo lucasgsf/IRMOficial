@@ -19,7 +19,7 @@
             templateUrl: 'app/pages/tipo_usuario/tipos_usuario.html',
             title: 'Tipos de Usuário',
             sidebarMeta: {
-                icon: 'ion-person',
+                icon: 'ion-person-stalker',
                 order: 5,
             },
         });

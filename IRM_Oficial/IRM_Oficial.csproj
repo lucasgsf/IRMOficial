@@ -290,6 +290,15 @@
     <Compile Include="VW_PLAYS_AUDIO.cs">
       <DependentUpon>DB_IRMOficial.tt</DependentUpon>
     </Compile>
+    <Compile Include="VW_RANK_GERAL.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_RANK_MENSAL.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_RANK_SEMANAL.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -5502,6 +5511,10 @@
     <Content Include="dev-release\app\pages\login\LoginCtrl.js" />
     <Content Include="dev-release\app\pages\login\login.module.js" />
     <Content Include="dev-release\app\pages\login\login.service.js" />
+    <Content Include="dev-release\app\pages\rank\rank.module.js" />
+    <Content Include="dev-release\app\pages\rank\rank.service.js" />
+    <Content Include="dev-release\app\pages\rank\RankCtrl.js" />
+    <Content Include="dev-release\app\pages\rank\rank.html" />
     <Content Include="dev-release\app\pages\usuario\usuario.directive.js" />
     <Content Include="dev-release\app\pages\usuario\usuarios.html" />
     <Content Include="dev-release\app\pages\usuario\UsuarioCtrl.js" />

@@ -164,6 +164,51 @@ warning 6002: The table/view 'irmoficial.dbo.VW_PLAYS_AUDIO' does not have a pri
           <Property Name="INTERACOES" Type="int" Nullable="false" />
           <Property Name="DATA" Type="date" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_RANK_GERAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_RANK_GERAL">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="DS_NOME" />
+          </Key>
+          <Property Name="POSICAO_RANK" Type="bigint" />
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="DS_NOME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="COMPARTILHAMENTO" Type="int" />
+          <Property Name="CURTIR" Type="int" />
+          <Property Name="PLAY" Type="int" />
+          <Property Name="TOTAL" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_RANK_MENSAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_RANK_MENSAL">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="DS_NOME" />
+          </Key>
+          <Property Name="POSICAO_RANK" Type="bigint" />
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="DS_NOME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="COMPARTILHAMENTO" Type="int" />
+          <Property Name="CURTIR" Type="int" />
+          <Property Name="PLAY" Type="int" />
+          <Property Name="TOTAL" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_RANK_SEMANAL">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="DS_NOME" />
+          </Key>
+          <Property Name="POSICAO_RANK" Type="bigint" />
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="DS_NOME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="COMPARTILHAMENTO" Type="int" />
+          <Property Name="CURTIR" Type="int" />
+          <Property Name="PLAY" Type="int" />
+          <Property Name="TOTAL" Type="int" />
+        </EntityType>
         <Association Name="FK__TB_ACOES___ID_PO__5629CD9C">
           <End Role="TB_POST" Type="Self.TB_POST" Multiplicity="1" />
           <End Role="TB_ACOES_POST" Type="Self.TB_ACOES_POST" Multiplicity="*" />
@@ -284,6 +329,39 @@ warning 6002: The table/view 'irmoficial.dbo.VW_PLAYS_AUDIO' does not have a pri
     [VW_PLAYS_AUDIO].[INTERACOES] AS [INTERACOES], 
     [VW_PLAYS_AUDIO].[DATA] AS [DATA]
     FROM [dbo].[VW_PLAYS_AUDIO] AS [VW_PLAYS_AUDIO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_RANK_GERAL" EntityType="Self.VW_RANK_GERAL" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_RANK_GERAL].[POSICAO_RANK] AS [POSICAO_RANK], 
+    [VW_RANK_GERAL].[ID_USUARIO] AS [ID_USUARIO], 
+    [VW_RANK_GERAL].[DS_NOME] AS [DS_NOME], 
+    [VW_RANK_GERAL].[COMPARTILHAMENTO] AS [COMPARTILHAMENTO], 
+    [VW_RANK_GERAL].[CURTIR] AS [CURTIR], 
+    [VW_RANK_GERAL].[PLAY] AS [PLAY], 
+    [VW_RANK_GERAL].[TOTAL] AS [TOTAL]
+    FROM [dbo].[VW_RANK_GERAL] AS [VW_RANK_GERAL]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_RANK_MENSAL" EntityType="Self.VW_RANK_MENSAL" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_RANK_MENSAL].[POSICAO_RANK] AS [POSICAO_RANK], 
+    [VW_RANK_MENSAL].[ID_USUARIO] AS [ID_USUARIO], 
+    [VW_RANK_MENSAL].[DS_NOME] AS [DS_NOME], 
+    [VW_RANK_MENSAL].[COMPARTILHAMENTO] AS [COMPARTILHAMENTO], 
+    [VW_RANK_MENSAL].[CURTIR] AS [CURTIR], 
+    [VW_RANK_MENSAL].[PLAY] AS [PLAY], 
+    [VW_RANK_MENSAL].[TOTAL] AS [TOTAL]
+    FROM [dbo].[VW_RANK_MENSAL] AS [VW_RANK_MENSAL]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_RANK_SEMANAL" EntityType="Self.VW_RANK_SEMANAL" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_RANK_SEMANAL].[POSICAO_RANK] AS [POSICAO_RANK], 
+    [VW_RANK_SEMANAL].[ID_USUARIO] AS [ID_USUARIO], 
+    [VW_RANK_SEMANAL].[DS_NOME] AS [DS_NOME], 
+    [VW_RANK_SEMANAL].[COMPARTILHAMENTO] AS [COMPARTILHAMENTO], 
+    [VW_RANK_SEMANAL].[CURTIR] AS [CURTIR], 
+    [VW_RANK_SEMANAL].[PLAY] AS [PLAY], 
+    [VW_RANK_SEMANAL].[TOTAL] AS [TOTAL]
+    FROM [dbo].[VW_RANK_SEMANAL] AS [VW_RANK_SEMANAL]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__TB_ACOES___ID_PO__5629CD9C" Association="Self.FK__TB_ACOES___ID_PO__5629CD9C">
             <End Role="TB_POST" EntitySet="TB_POST" />
@@ -460,6 +538,9 @@ warning 6002: The table/view 'irmoficial.dbo.VW_PLAYS_AUDIO' does not have a pri
           <EntitySet Name="VW_COMPARTILHAMENTOS_AUDIO" EntityType="irmoficialModel.VW_COMPARTILHAMENTOS_AUDIO" />
           <EntitySet Name="VW_PLAYS_AUDIO" EntityType="irmoficialModel.VW_PLAYS_AUDIO" />
           <EntitySet Name="VW_NOVOS_USUARIOS" EntityType="irmoficialModel.VW_NOVOS_USUARIOS" />
+          <EntitySet Name="VW_RANK_GERAL" EntityType="irmoficialModel.VW_RANK_GERAL" />
+          <EntitySet Name="VW_RANK_MENSAL" EntityType="irmoficialModel.VW_RANK_MENSAL" />
+          <EntitySet Name="VW_RANK_SEMANAL" EntityType="irmoficialModel.VW_RANK_SEMANAL" />
         </EntityContainer>
         <EntityType Name="TB_ACOES_POST">
           <Key>
@@ -622,6 +703,45 @@ warning 6002: The table/view 'irmoficial.dbo.VW_PLAYS_AUDIO' does not have a pri
           </Key>
           <Property Name="CADASTROS" Type="Int32" Nullable="false" />
           <Property Name="DATA" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="VW_RANK_GERAL">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="DS_NOME" />
+          </Key>
+          <Property Name="POSICAO_RANK" Type="Int64" />
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="DS_NOME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="COMPARTILHAMENTO" Type="Int32" />
+          <Property Name="CURTIR" Type="Int32" />
+          <Property Name="PLAY" Type="Int32" />
+          <Property Name="TOTAL" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VW_RANK_MENSAL">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="DS_NOME" />
+          </Key>
+          <Property Name="POSICAO_RANK" Type="Int64" />
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="DS_NOME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="COMPARTILHAMENTO" Type="Int32" />
+          <Property Name="CURTIR" Type="Int32" />
+          <Property Name="PLAY" Type="Int32" />
+          <Property Name="TOTAL" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VW_RANK_SEMANAL">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="DS_NOME" />
+          </Key>
+          <Property Name="POSICAO_RANK" Type="Int64" />
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="DS_NOME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="COMPARTILHAMENTO" Type="Int32" />
+          <Property Name="CURTIR" Type="Int32" />
+          <Property Name="PLAY" Type="Int32" />
+          <Property Name="TOTAL" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -789,6 +909,45 @@ warning 6002: The table/view 'irmoficial.dbo.VW_PLAYS_AUDIO' does not have a pri
               <MappingFragment StoreEntitySet="VW_NOVOS_USUARIOS">
                 <ScalarProperty Name="DATA" ColumnName="DATA" />
                 <ScalarProperty Name="CADASTROS" ColumnName="CADASTROS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_RANK_GERAL">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_RANK_GERAL">
+              <MappingFragment StoreEntitySet="VW_RANK_GERAL">
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="PLAY" ColumnName="PLAY" />
+                <ScalarProperty Name="CURTIR" ColumnName="CURTIR" />
+                <ScalarProperty Name="COMPARTILHAMENTO" ColumnName="COMPARTILHAMENTO" />
+                <ScalarProperty Name="DS_NOME" ColumnName="DS_NOME" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="POSICAO_RANK" ColumnName="POSICAO_RANK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_RANK_MENSAL">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_RANK_MENSAL">
+              <MappingFragment StoreEntitySet="VW_RANK_MENSAL">
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="PLAY" ColumnName="PLAY" />
+                <ScalarProperty Name="CURTIR" ColumnName="CURTIR" />
+                <ScalarProperty Name="COMPARTILHAMENTO" ColumnName="COMPARTILHAMENTO" />
+                <ScalarProperty Name="DS_NOME" ColumnName="DS_NOME" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="POSICAO_RANK" ColumnName="POSICAO_RANK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_RANK_SEMANAL">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_RANK_SEMANAL">
+              <MappingFragment StoreEntitySet="VW_RANK_SEMANAL">
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="PLAY" ColumnName="PLAY" />
+                <ScalarProperty Name="CURTIR" ColumnName="CURTIR" />
+                <ScalarProperty Name="COMPARTILHAMENTO" ColumnName="COMPARTILHAMENTO" />
+                <ScalarProperty Name="DS_NOME" ColumnName="DS_NOME" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="POSICAO_RANK" ColumnName="POSICAO_RANK" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

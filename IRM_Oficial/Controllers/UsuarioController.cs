@@ -225,5 +225,47 @@ namespace IRM_Oficial.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, false);
             }
         }
+
+        [HttpGet]
+        public HttpResponseMessage rankGeral()
+        {
+            try
+            {
+                Usuario usu = new Usuario();
+                return Request.CreateResponse(HttpStatusCode.OK, usu.rankGeral());
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, false);
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage rankMensal()
+        {
+            try
+            {
+                Usuario usu = new Usuario();
+                return Request.CreateResponse(HttpStatusCode.OK, usu.rankMensal());
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, false);
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage rankSemanal()
+        {
+            try
+            {
+                Usuario usu = new Usuario();
+                return Request.CreateResponse(HttpStatusCode.OK, usu.rankSemanal());
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, false);
+            }
+        }
     }
 }

@@ -171,5 +171,20 @@ namespace IRM_Oficial.Models
         {
             return db.VW_ACESSOS_TOTAIS.FirstOrDefault().ACESSOS;
         }
+
+        public List<VW_RANK_GERAL> rankGeral()
+        {
+            return db.VW_RANK_GERAL.ToList();
+        }
+
+        public List<VW_RANK_MENSAL> rankMensal()
+        {
+            return db.VW_RANK_MENSAL.ToList();
+        }
+
+        public List<VW_RANK_SEMANAL> rankSemanal()
+        {
+            return db.VW_RANK_SEMANAL.ToList();
+        }
     }
 }

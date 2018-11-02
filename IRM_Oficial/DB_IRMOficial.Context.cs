@@ -23,7 +23,7 @@ public partial class DB_IRMOficial : DbContext
     public DB_IRMOficial()
         : base("name=DB_IRMOficial")
     {
-        this.Configuration.LazyLoadingEnabled = false;
+
     }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -63,6 +63,12 @@ public partial class DB_IRMOficial : DbContext
     public virtual DbSet<VW_PLAYS_AUDIO> VW_PLAYS_AUDIO { get; set; }
 
     public virtual DbSet<VW_NOVOS_USUARIOS> VW_NOVOS_USUARIOS { get; set; }
+
+    public virtual DbSet<VW_RANK_GERAL> VW_RANK_GERAL { get; set; }
+
+    public virtual DbSet<VW_RANK_MENSAL> VW_RANK_MENSAL { get; set; }
+
+    public virtual DbSet<VW_RANK_SEMANAL> VW_RANK_SEMANAL { get; set; }
 
 }
 
