@@ -39,6 +39,8 @@ public partial class TB_CONTEUDO
 
     public Nullable<bool> FL_VIDEO { get; set; }
 
+    public string DS_IMAGEM { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

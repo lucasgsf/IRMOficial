@@ -47,6 +47,8 @@ public partial class TB_POST
 
     public Nullable<bool> FL_FIXO { get; set; }
 
+    public string DS_IMAGEM { get; set; }
+
 
 
     public virtual TB_IDIOMA TB_IDIOMA { get; set; }

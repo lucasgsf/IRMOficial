@@ -73,6 +73,38 @@ namespace IRM_Oficial.Models
             return postDTO;
         }
 
+        public PostDTO getPostDetalhadoImage(TB_POST post)
+        {
+            PostDTO postDTO = new PostDTO();
+            postDTO = (from ps in db.TB_POST
+                       join id in db.TB_IDIOMA
+                           on ps.ID_IDIOMA equals id.ID_IDIOMA
+                       join tp in db.TB_TIPO_POST
+                           on ps.ID_TIPO_POST equals tp.ID_TIPO_POST
+                       join ap in db.TB_ACOES_POST
+                           on ps.ID_POST equals ap.ID_POST
+                           into _ap
+                       where ps.ID_POST == post.ID_POST
+                       select new PostDTO
+                       {
+                           ID_POST = ps.ID_POST,
+                           DS_POST = ps.DS_POST,
+                           DS_TITULO = ps.DS_TITULO,
+                           DS_IDIOMA = id.DS_IDIOMA,
+                           ID_IDIOMA = ps.ID_IDIOMA,
+                           DS_TIPO_POST = tp.DS_TIPO_POST,
+                           ID_TIPO_POST = ps.ID_TIPO_POST,
+                           DT_CADASTRO = ps.DT_CADASTRO,
+                           NR_ORDEM = ps.NR_ORDEM,
+                           FL_FIXO = ps.FL_FIXO,
+                           DS_IMAGEM = "http://irmoficial.azurewebsites.net" + ps.DS_IMAGEM,
+                           DS_AUDIO = "http://irmoficial.azurewebsites.net" + ps.DS_AUDIO,
+                           NR_CURTIDAS = _ap.Count(c => c.FL_CURTIR),
+                           NR_COMPARTILHAMENTOS = _ap.Count(c => c.FL_COMPARTILHAR)
+                       }).First();
+            return postDTO;
+        }
+
         public byte[] getAudioPost(TB_POST post)
         {
             TB_POST tbPost = db.TB_POST.Find(post.ID_POST);
@@ -111,6 +143,39 @@ namespace IRM_Oficial.Models
                             NR_ORDEM = ps.NR_ORDEM,
                             FL_FIXO = ps.FL_FIXO,
                             IM_IMAGEM = ps.IM_IMAGEM,
+                            NR_CURTIDAS = curtidas,
+                            NR_COMPARTILHAMENTOS = compartilhamentos
+                        }).ToList();
+            return lstPosts;
+        }
+
+        public List<PostDTO> getFeedResumeImage(DateTime data)
+        {
+            List<PostDTO> lstPosts = new List<PostDTO>();
+            lstPosts = (from ps in db.TB_POST
+                        join id in db.TB_IDIOMA
+                            on ps.ID_IDIOMA equals id.ID_IDIOMA
+                        join tp in db.TB_TIPO_POST
+                            on ps.ID_TIPO_POST equals tp.ID_TIPO_POST
+                        let curtidas = (from ap in db.TB_ACOES_POST where ap.ID_POST == ps.ID_POST && ap.FL_CURTIR select ap.ID_ACOES_POST).Count()
+                        let compartilhamentos = (from ap in db.TB_ACOES_POST where ap.ID_POST == ps.ID_POST && ap.FL_COMPARTILHAR select ap.ID_ACOES_POST).Count()
+                        where (DbFunctions.TruncateTime(ps.DT_CADASTRO) == data.Date || (ps.FL_FIXO.HasValue && ps.FL_FIXO.Value))
+                            && (!String.IsNullOrEmpty(ps.DS_AUDIO))
+                        orderby ps.NR_ORDEM
+                        select new PostDTO
+                        {
+                            ID_POST = ps.ID_POST,
+                            DS_POST = ps.DS_POST,
+                            DS_TITULO = ps.DS_TITULO,
+                            DS_IDIOMA = id.DS_IDIOMA,
+                            ID_IDIOMA = ps.ID_IDIOMA,
+                            DS_TIPO_POST = tp.DS_TIPO_POST,
+                            ID_TIPO_POST = ps.ID_TIPO_POST,
+                            DT_CADASTRO = ps.DT_CADASTRO,
+                            NR_ORDEM = ps.NR_ORDEM,
+                            FL_FIXO = ps.FL_FIXO,
+                            DS_IMAGEM = "http://irmoficial.azurewebsites.net" + ps.DS_IMAGEM,
+                            DS_AUDIO = "http://irmoficial.azurewebsites.net" + ps.DS_AUDIO,
                             NR_CURTIDAS = curtidas,
                             NR_COMPARTILHAMENTOS = compartilhamentos
                         }).ToList();

@@ -29,6 +29,20 @@ namespace IRM_Oficial.Controllers
         }
 
         [HttpGet]
+        public HttpResponseMessage listarConteudosResume()
+        {
+            try
+            {
+                Conteudo ctu = new Conteudo();
+                return Request.CreateResponse(HttpStatusCode.OK, ctu.listarConteudosResume());
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, false);
+            }
+        }
+
+        [HttpGet]
         public HttpResponseMessage getConteudo(TB_CONTEUDO conteudo)
         {
             try
@@ -85,6 +99,7 @@ namespace IRM_Oficial.Controllers
 
                 if (Path.GetExtension(arq.FileName).ToString() == ".jpg" || Path.GetExtension(arq.FileName).ToString() == ".png" || Path.GetExtension(arq.FileName).ToString() == ".jpeg")
                 {
+                    // Salvando blob no banco de dados
                     byte[] fileData = null;
                     using (var binaryReader = new BinaryReader(arq.InputStream))
                     {
@@ -97,6 +112,19 @@ namespace IRM_Oficial.Controllers
                     ct.cadConteudo(conteudo);
                 else
                     ct.altConteudo(conteudo);
+
+                if (conteudo.ID_CONTEUDO > 0 && (Path.GetExtension(arq.FileName).ToString() == ".jpg" || Path.GetExtension(arq.FileName).ToString() == ".png" || Path.GetExtension(arq.FileName).ToString() == ".jpeg"))
+                {
+                    // Salvando imagem no disco
+                    string path = System.AppDomain.CurrentDomain.BaseDirectory + "//conteudos//" + conteudo.ID_CONTEUDO;
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+
+                    path += "//" + arq.FileName;
+                    arq.SaveAs(path);
+                    conteudo.DS_IMAGEM = "/conteudos/" + conteudo.ID_CONTEUDO + "/" + arq.FileName;
+                    ct.altConteudo(conteudo);
+                }
 
                 return Request.CreateResponse(HttpStatusCode.OK, conteudo.ID_CONTEUDO);
             }

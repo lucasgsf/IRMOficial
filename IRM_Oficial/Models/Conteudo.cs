@@ -31,6 +31,25 @@ namespace IRM_Oficial.Models
             return lstConteudos;
         }
 
+        public List<ConteudoDTO> listarConteudosResume()
+        {
+            List<ConteudoDTO> lstConteudos = new List<ConteudoDTO>();
+            lstConteudos = (from ct in db.TB_CONTEUDO
+                            let curtidas = (from ac in db.TB_ACOES_CONTEUDO where ac.ID_CONTEUDO == ct.ID_CONTEUDO && ac.FL_CURTIR select ac.ID_ACOES_CONTEUDO).Count()
+                            orderby ct.NR_ORDEM ascending
+                            select new ConteudoDTO
+                            {
+                                ID_CONTEUDO = ct.ID_CONTEUDO,
+                                DS_CONTEUDO = ct.DS_CONTEUDO,
+                                DS_LINK = ct.DS_LINK,
+                                FL_VIDEO = ct.FL_VIDEO,
+                                DS_IMAGEM = "http://irmoficial.azurewebsites.net" + ct.DS_IMAGEM,
+                                NR_ORDEM = ct.NR_ORDEM,
+                                NR_CURTIDAS = curtidas,
+                            }).ToList();
+            return lstConteudos;
+        }
+
         public TB_CONTEUDO getConteudo(TB_CONTEUDO conteudo)
         {
             return db.TB_CONTEUDO.Find(conteudo.ID_CONTEUDO);

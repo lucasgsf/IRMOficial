@@ -23,7 +23,7 @@ public partial class DB_IRMOficial : DbContext
     public DB_IRMOficial()
         : base("name=DB_IRMOficial")
     {
-
+        this.Configuration.LazyLoadingEnabled = false;
     }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)

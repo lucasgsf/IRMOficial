@@ -26,13 +26,17 @@
                             <tr class="sortable ">
                                 <th class="table-id" st-sort="POSICAO_RANK" st-sort-default="true">#</th>
                                 <th st-sort="DS_NOME">Nome</th>
+                                <th st-sort="DS_EMAIL">Email</th>
+                                <th st-sort="DS_CIDADE">Cidade</th>
+                                <th st-sort="DS_ESTADO">Estado</th>
+                                <th st-sort="DS_PAIS">País</th>
                                 <th st-sort="COMPARTILHAMENTO">Compartilhamentos</th>
                                 <th st-sort="CURTIR">Curtidas</th>
                                 <th st-sort="PLAY">Plays</th>
                                 <th st-sort="TOTAL">Total</th>
                             </tr>
                             <tr>
-                                <th colspan="6">
+                                <th colspan="10">
                                     <input st-search="" placeholder="Pesquisar" class="input-sm form-control search-input"
                                            type="search" />
                                 </th>
@@ -42,6 +46,10 @@
                             <tr ng-repeat="item in displayedList">
                                 <td class="table-id">{{item.POSICAO_RANK}}</td>
                                 <td>{{item.DS_NOME}}</td>
+                                <td>{{item.DS_EMAIL}}</td>
+                                <td>{{item.DS_CIDADE}}</td>
+                                <td>{{item.DS_ESTADO}}</td>
+                                <td>{{item.DS_PAIS}}</td>
                                 <td>{{item.COMPARTILHAMENTO}}</td>
                                 <td>{{item.CURTIR}}</td>
                                 <td>{{item.PLAY}}</td>
@@ -50,7 +58,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="3" class="text-center">
+                                <td colspan="10" class="text-center">
                                     <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
                                 </td>
                             </tr>

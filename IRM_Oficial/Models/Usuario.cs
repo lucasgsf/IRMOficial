@@ -186,5 +186,20 @@ namespace IRM_Oficial.Models
         {
             return db.VW_RANK_SEMANAL.ToList();
         }
+
+        public List<VW_RANK_GERAL> rankGeralUsuario()
+        {
+            return db.VW_RANK_GERAL.Take(10).ToList();
+        }
+
+        public List<VW_RANK_MENSAL> rankMensalUsuario()
+        {
+            return db.VW_RANK_MENSAL.Take(10).ToList();
+        }
+
+        public List<VW_RANK_SEMANAL> rankSemanalUsuario()
+        {
+            return db.VW_RANK_SEMANAL.Take(10).ToList();
+        }
     }
 }

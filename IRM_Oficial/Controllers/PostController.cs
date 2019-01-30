@@ -60,6 +60,22 @@ namespace IRM_Oficial.Controllers
             }
         }
 
+        [HttpGet]
+        public HttpResponseMessage getPostDetalhadoImage(int id)
+        {
+            try
+            {
+                Post pst = new Post();
+                TB_POST post = new TB_POST();
+                post.ID_POST = id;
+                return Request.CreateResponse(HttpStatusCode.OK, pst.getPostDetalhadoImage(post));
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, false);
+            }
+        }
+
         /*[HttpGet]
         public HttpResponseMessage getAudioPost(int id)
         {
@@ -124,6 +140,20 @@ namespace IRM_Oficial.Controllers
         }
 
         [HttpGet]
+        public HttpResponseMessage getFeedResumeImage(DateTime data)
+        {
+            try
+            {
+                Post pst = new Post();
+                return Request.CreateResponse(HttpStatusCode.OK, pst.getFeedResumeImage(data));
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, false);
+            }
+        }
+
+        [HttpGet]
         public HttpResponseMessage getFeed(DateTime data)
         {
             try
@@ -171,6 +201,16 @@ namespace IRM_Oficial.Controllers
 
                     if (Path.GetExtension(arq.FileName).ToString() == ".jpg" || Path.GetExtension(arq.FileName).ToString() == ".png" || Path.GetExtension(arq.FileName).ToString() == ".jpeg")
                     {
+                        // Salvando imagem no disco
+                        string path = System.AppDomain.CurrentDomain.BaseDirectory + "//posts//" + post.ID_POST;
+                        if (!Directory.Exists(path))
+                            Directory.CreateDirectory(path);
+
+                        path += "//" + arq.FileName;
+                        arq.SaveAs(path);
+                        post.DS_IMAGEM = "/posts/" + post.ID_POST + "/" + arq.FileName;
+
+                        // Salvando blob no banco de dados
                         byte[] fileData = null;
                         using (var binaryReader = new BinaryReader(arq.InputStream))
                         {
@@ -181,12 +221,14 @@ namespace IRM_Oficial.Controllers
 
                     if (Path.GetExtension(arq.FileName).ToString() == ".mp3")
                     {
+                        // Salvando áudio no disco
                         string path = System.AppDomain.CurrentDomain.BaseDirectory + "//posts//" + post.ID_POST;
                         if (!Directory.Exists(path))
                             Directory.CreateDirectory(path);
                         path += "//audio.mp3";
                         arq.SaveAs(path);
-                        post.DS_AUDIO = path;
+
+                        post.DS_AUDIO = "/posts/" + post.ID_POST + "/audio.mp3";
                     }
 
                     pst.altPost(post);

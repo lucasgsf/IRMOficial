@@ -18,5 +18,6 @@ namespace IRM_Oficial.DTO
         public DateTime DT_ACAO_CURTIR { get; set; }
         public int ID_USUARIO { get; set; }
         public int NR_CURTIDAS { get; set; }
+        public string DS_IMAGEM { get; set; }
     }
 }

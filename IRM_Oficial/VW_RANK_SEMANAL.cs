@@ -32,6 +32,14 @@ public partial class VW_RANK_SEMANAL
 
     public Nullable<int> TOTAL { get; set; }
 
+    public string DS_EMAIL { get; set; }
+
+    public string DS_CIDADE { get; set; }
+
+    public string DS_ESTADO { get; set; }
+
+    public string DS_PAIS { get; set; }
+
 }
 
 }

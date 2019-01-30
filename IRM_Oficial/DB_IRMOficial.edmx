@@ -40,6 +40,7 @@
           <Property Name="DS_LINK" Type="varchar(max)" />
           <Property Name="NR_ORDEM" Type="int" Nullable="false" />
           <Property Name="FL_VIDEO" Type="bit" />
+          <Property Name="DS_IMAGEM" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="TB_DOCUMENTO">
           <Key>
@@ -74,6 +75,7 @@
           <Property Name="ID_TIPO_POST" Type="int" Nullable="false" />
           <Property Name="ID_IDIOMA" Type="int" Nullable="false" />
           <Property Name="FL_FIXO" Type="bit" />
+          <Property Name="DS_IMAGEM" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="TB_TIPO_POST">
           <Key>
@@ -170,10 +172,15 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_GERAL' does not have a prim
           <Key>
             <PropertyRef Name="ID_USUARIO" />
             <PropertyRef Name="DS_NOME" />
+            <PropertyRef Name="DS_EMAIL" />
           </Key>
           <Property Name="POSICAO_RANK" Type="bigint" />
           <Property Name="ID_USUARIO" Type="int" Nullable="false" />
           <Property Name="DS_NOME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DS_EMAIL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DS_CIDADE" Type="varchar" MaxLength="255" />
+          <Property Name="DS_ESTADO" Type="varchar" MaxLength="255" />
+          <Property Name="DS_PAIS" Type="varchar" MaxLength="255" />
           <Property Name="COMPARTILHAMENTO" Type="int" />
           <Property Name="CURTIR" Type="int" />
           <Property Name="PLAY" Type="int" />
@@ -185,10 +192,15 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_MENSAL' does not have a pri
           <Key>
             <PropertyRef Name="ID_USUARIO" />
             <PropertyRef Name="DS_NOME" />
+            <PropertyRef Name="DS_EMAIL" />
           </Key>
           <Property Name="POSICAO_RANK" Type="bigint" />
-          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DS_NOME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DS_EMAIL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DS_CIDADE" Type="varchar" MaxLength="255" />
+          <Property Name="DS_ESTADO" Type="varchar" MaxLength="255" />
+          <Property Name="DS_PAIS" Type="varchar" MaxLength="255" />
           <Property Name="COMPARTILHAMENTO" Type="int" />
           <Property Name="CURTIR" Type="int" />
           <Property Name="PLAY" Type="int" />
@@ -200,10 +212,15 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <Key>
             <PropertyRef Name="ID_USUARIO" />
             <PropertyRef Name="DS_NOME" />
+            <PropertyRef Name="DS_EMAIL" />
           </Key>
           <Property Name="POSICAO_RANK" Type="bigint" />
-          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DS_NOME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DS_EMAIL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DS_CIDADE" Type="varchar" MaxLength="255" />
+          <Property Name="DS_ESTADO" Type="varchar" MaxLength="255" />
+          <Property Name="DS_PAIS" Type="varchar" MaxLength="255" />
           <Property Name="COMPARTILHAMENTO" Type="int" />
           <Property Name="CURTIR" Type="int" />
           <Property Name="PLAY" Type="int" />
@@ -335,6 +352,10 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
     [VW_RANK_GERAL].[POSICAO_RANK] AS [POSICAO_RANK], 
     [VW_RANK_GERAL].[ID_USUARIO] AS [ID_USUARIO], 
     [VW_RANK_GERAL].[DS_NOME] AS [DS_NOME], 
+    [VW_RANK_GERAL].[DS_EMAIL] AS [DS_EMAIL], 
+    [VW_RANK_GERAL].[DS_CIDADE] AS [DS_CIDADE], 
+    [VW_RANK_GERAL].[DS_ESTADO] AS [DS_ESTADO], 
+    [VW_RANK_GERAL].[DS_PAIS] AS [DS_PAIS], 
     [VW_RANK_GERAL].[COMPARTILHAMENTO] AS [COMPARTILHAMENTO], 
     [VW_RANK_GERAL].[CURTIR] AS [CURTIR], 
     [VW_RANK_GERAL].[PLAY] AS [PLAY], 
@@ -346,6 +367,10 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
     [VW_RANK_MENSAL].[POSICAO_RANK] AS [POSICAO_RANK], 
     [VW_RANK_MENSAL].[ID_USUARIO] AS [ID_USUARIO], 
     [VW_RANK_MENSAL].[DS_NOME] AS [DS_NOME], 
+    [VW_RANK_MENSAL].[DS_EMAIL] AS [DS_EMAIL], 
+    [VW_RANK_MENSAL].[DS_CIDADE] AS [DS_CIDADE], 
+    [VW_RANK_MENSAL].[DS_ESTADO] AS [DS_ESTADO], 
+    [VW_RANK_MENSAL].[DS_PAIS] AS [DS_PAIS], 
     [VW_RANK_MENSAL].[COMPARTILHAMENTO] AS [COMPARTILHAMENTO], 
     [VW_RANK_MENSAL].[CURTIR] AS [CURTIR], 
     [VW_RANK_MENSAL].[PLAY] AS [PLAY], 
@@ -357,6 +382,10 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
     [VW_RANK_SEMANAL].[POSICAO_RANK] AS [POSICAO_RANK], 
     [VW_RANK_SEMANAL].[ID_USUARIO] AS [ID_USUARIO], 
     [VW_RANK_SEMANAL].[DS_NOME] AS [DS_NOME], 
+    [VW_RANK_SEMANAL].[DS_EMAIL] AS [DS_EMAIL], 
+    [VW_RANK_SEMANAL].[DS_CIDADE] AS [DS_CIDADE], 
+    [VW_RANK_SEMANAL].[DS_ESTADO] AS [DS_ESTADO], 
+    [VW_RANK_SEMANAL].[DS_PAIS] AS [DS_PAIS], 
     [VW_RANK_SEMANAL].[COMPARTILHAMENTO] AS [COMPARTILHAMENTO], 
     [VW_RANK_SEMANAL].[CURTIR] AS [CURTIR], 
     [VW_RANK_SEMANAL].[PLAY] AS [PLAY], 
@@ -417,6 +446,7 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <NavigationProperty Name="TB_ACOES_POST" Relationship="irmoficialModel.FK__TB_ACOES___ID_PO__4BAC3F29" FromRole="TB_POST" ToRole="TB_ACOES_POST" />
           <Property Name="NR_ORDEM" Type="Int32" Nullable="false" />
           <Property Name="FL_FIXO" Type="Boolean" />
+          <Property Name="DS_IMAGEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TB_TIPO_POST">
           <Key>
@@ -570,6 +600,7 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <Property Name="NR_ORDEM" Type="Int32" Nullable="false" />
           <Property Name="FL_VIDEO" Type="Boolean" />
           <NavigationProperty Name="TB_ACOES_CONTEUDO" Relationship="irmoficialModel.FK_TB_ACOES_CONTEUDO_TB_CONTEUDO" FromRole="TB_CONTEUDO" ToRole="TB_ACOES_CONTEUDO" />
+          <Property Name="DS_IMAGEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__TB_ACOES___ID_PO__4BAC3F29">
           <End Type="irmoficialModel.TB_POST" Role="TB_POST" Multiplicity="1" />
@@ -708,6 +739,7 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <Key>
             <PropertyRef Name="ID_USUARIO" />
             <PropertyRef Name="DS_NOME" />
+            <PropertyRef Name="DS_EMAIL" />
           </Key>
           <Property Name="POSICAO_RANK" Type="Int64" />
           <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
@@ -716,11 +748,16 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <Property Name="CURTIR" Type="Int32" />
           <Property Name="PLAY" Type="Int32" />
           <Property Name="TOTAL" Type="Int32" />
+          <Property Name="DS_EMAIL" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_CIDADE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_ESTADO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_PAIS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VW_RANK_MENSAL">
           <Key>
             <PropertyRef Name="ID_USUARIO" />
             <PropertyRef Name="DS_NOME" />
+            <PropertyRef Name="DS_EMAIL" />
           </Key>
           <Property Name="POSICAO_RANK" Type="Int64" />
           <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
@@ -729,11 +766,16 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <Property Name="CURTIR" Type="Int32" />
           <Property Name="PLAY" Type="Int32" />
           <Property Name="TOTAL" Type="Int32" />
+          <Property Name="DS_EMAIL" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_CIDADE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_ESTADO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_PAIS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VW_RANK_SEMANAL">
           <Key>
             <PropertyRef Name="ID_USUARIO" />
             <PropertyRef Name="DS_NOME" />
+            <PropertyRef Name="DS_EMAIL" />
           </Key>
           <Property Name="POSICAO_RANK" Type="Int64" />
           <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
@@ -742,6 +784,10 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <Property Name="CURTIR" Type="Int32" />
           <Property Name="PLAY" Type="Int32" />
           <Property Name="TOTAL" Type="Int32" />
+          <Property Name="DS_EMAIL" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_CIDADE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_ESTADO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DS_PAIS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -760,6 +806,7 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySetMapping Name="TB_POST">
             <EntityTypeMapping TypeName="irmoficialModel.TB_POST">
               <MappingFragment StoreEntitySet="TB_POST">
+                <ScalarProperty Name="DS_IMAGEM" ColumnName="DS_IMAGEM" />
                 <ScalarProperty Name="FL_FIXO" ColumnName="FL_FIXO" />
                 <ScalarProperty Name="NR_ORDEM" ColumnName="NR_ORDEM" />
                 <ScalarProperty Name="DS_AUDIO" ColumnName="DS_AUDIO" />
@@ -824,6 +871,7 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySetMapping Name="TB_CONTEUDO">
             <EntityTypeMapping TypeName="irmoficialModel.TB_CONTEUDO">
               <MappingFragment StoreEntitySet="TB_CONTEUDO">
+                <ScalarProperty Name="DS_IMAGEM" ColumnName="DS_IMAGEM" />
                 <ScalarProperty Name="FL_VIDEO" ColumnName="FL_VIDEO" />
                 <ScalarProperty Name="NR_ORDEM" ColumnName="NR_ORDEM" />
                 <ScalarProperty Name="DS_CONTEUDO" ColumnName="DS_CONTEUDO" />
@@ -915,6 +963,10 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySetMapping Name="VW_RANK_GERAL">
             <EntityTypeMapping TypeName="irmoficialModel.VW_RANK_GERAL">
               <MappingFragment StoreEntitySet="VW_RANK_GERAL">
+                <ScalarProperty Name="DS_PAIS" ColumnName="DS_PAIS" />
+                <ScalarProperty Name="DS_ESTADO" ColumnName="DS_ESTADO" />
+                <ScalarProperty Name="DS_CIDADE" ColumnName="DS_CIDADE" />
+                <ScalarProperty Name="DS_EMAIL" ColumnName="DS_EMAIL" />
                 <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
                 <ScalarProperty Name="PLAY" ColumnName="PLAY" />
                 <ScalarProperty Name="CURTIR" ColumnName="CURTIR" />
@@ -928,6 +980,10 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySetMapping Name="VW_RANK_MENSAL">
             <EntityTypeMapping TypeName="irmoficialModel.VW_RANK_MENSAL">
               <MappingFragment StoreEntitySet="VW_RANK_MENSAL">
+                <ScalarProperty Name="DS_PAIS" ColumnName="DS_PAIS" />
+                <ScalarProperty Name="DS_ESTADO" ColumnName="DS_ESTADO" />
+                <ScalarProperty Name="DS_CIDADE" ColumnName="DS_CIDADE" />
+                <ScalarProperty Name="DS_EMAIL" ColumnName="DS_EMAIL" />
                 <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
                 <ScalarProperty Name="PLAY" ColumnName="PLAY" />
                 <ScalarProperty Name="CURTIR" ColumnName="CURTIR" />
@@ -941,6 +997,10 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySetMapping Name="VW_RANK_SEMANAL">
             <EntityTypeMapping TypeName="irmoficialModel.VW_RANK_SEMANAL">
               <MappingFragment StoreEntitySet="VW_RANK_SEMANAL">
+                <ScalarProperty Name="DS_PAIS" ColumnName="DS_PAIS" />
+                <ScalarProperty Name="DS_ESTADO" ColumnName="DS_ESTADO" />
+                <ScalarProperty Name="DS_CIDADE" ColumnName="DS_CIDADE" />
+                <ScalarProperty Name="DS_EMAIL" ColumnName="DS_EMAIL" />
                 <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
                 <ScalarProperty Name="PLAY" ColumnName="PLAY" />
                 <ScalarProperty Name="CURTIR" ColumnName="CURTIR" />

@@ -90,12 +90,15 @@ namespace IRM_Oficial.Controllers
                     
                     if (Path.GetExtension(arq.FileName).ToString() == ".pdf")
                     {
+                        // Salvando documento no disco
                         string path = System.AppDomain.CurrentDomain.BaseDirectory + "//documentos";
                         if (!Directory.Exists(path))
                             Directory.CreateDirectory(path);
+
                         path += "//" + documento.ID_DOCUMENTO + ".pdf";
                         arq.SaveAs(path);
-                        documento.DS_ARQUIVO = path;
+                        
+                        documento.DS_ARQUIVO = "/documentos/" + documento.ID_DOCUMENTO + ".pdf";
                     }
 
                     ct.altDocumento(documento);

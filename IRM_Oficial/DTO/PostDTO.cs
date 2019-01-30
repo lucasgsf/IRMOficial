@@ -24,5 +24,6 @@ namespace IRM_Oficial.DTO
         public int NR_COMPARTILHAMENTOS { get; set; }
         public int NR_PLAYS { get; set; }
         public Nullable<bool> FL_FIXO { get; set; }
+        public string DS_IMAGEM { get; set; }
     }
 }
