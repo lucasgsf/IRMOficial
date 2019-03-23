@@ -20,7 +20,7 @@
             title: 'Documentos',
             sidebarMeta: {
                 icon: 'ion-document-text',
-                order: 8,
+                order: 9,
             },
         });
   }

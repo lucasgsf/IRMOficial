@@ -24,6 +24,8 @@
     'BlurAdmin.pages.documento',
     'BlurAdmin.pages.documentos',
     'BlurAdmin.pages.rank',
+    'BlurAdmin.pages.popup',
+    'BlurAdmin.pages.popups',
     //'BlurAdmin.pages.ui',
     //'BlurAdmin.pages.components',
     //'BlurAdmin.pages.form',

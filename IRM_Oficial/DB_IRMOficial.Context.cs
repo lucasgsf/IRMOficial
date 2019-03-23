@@ -70,6 +70,8 @@ public partial class DB_IRMOficial : DbContext
 
     public virtual DbSet<VW_RANK_SEMANAL> VW_RANK_SEMANAL { get; set; }
 
+    public virtual DbSet<TB_POPUP> TB_POPUP { get; set; }
+
 }
 
 }

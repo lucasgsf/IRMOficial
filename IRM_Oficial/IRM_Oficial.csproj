@@ -196,6 +196,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AcoesConteudoController.cs" />
+    <Compile Include="Controllers\PopupController.cs" />
     <Compile Include="Controllers\DocumentoController.cs" />
     <Compile Include="Controllers\ConteudoController.cs" />
     <Compile Include="Controllers\AcoesPostController.cs" />
@@ -222,6 +223,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB_IRMOficial.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DTO\PopupDTO.cs" />
     <Compile Include="DTO\DocumentoDTO.cs" />
     <Compile Include="DTO\NotificacaoDTO.cs" />
     <Compile Include="DTO\ConteudoDTO.cs" />
@@ -232,6 +234,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AcoesConteudo.cs" />
+    <Compile Include="Models\Popup.cs" />
     <Compile Include="Models\Documento.cs" />
     <Compile Include="Models\Conteudo.cs" />
     <Compile Include="Models\Idioma.cs" />
@@ -255,6 +258,9 @@
       <DependentUpon>DB_IRMOficial.tt</DependentUpon>
     </Compile>
     <Compile Include="TB_IDIOMA.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_POPUP.cs">
       <DependentUpon>DB_IRMOficial.tt</DependentUpon>
     </Compile>
     <Compile Include="TB_POST.cs">
@@ -5382,6 +5388,11 @@
     <Content Include="dev-release\app\pages\components\tree\tree.html" />
     <Content Include="dev-release\app\pages\components\tree\tree.module.js" />
     <Content Include="dev-release\app\pages\components\tree\treeCtrl.js" />
+    <Content Include="dev-release\app\pages\popup\popup.html" />
+    <Content Include="dev-release\app\pages\popup\popup.module.js" />
+    <Content Include="dev-release\app\pages\popup\popup.service.js" />
+    <Content Include="dev-release\app\pages\popup\PopupCtrl.js" />
+    <Content Include="dev-release\app\pages\popup\popups.html" />
     <Content Include="dev-release\app\pages\documento\documento.html" />
     <Content Include="dev-release\app\pages\documento\documento.module.js" />
     <Content Include="dev-release\app\pages\documento\documento.service.js" />

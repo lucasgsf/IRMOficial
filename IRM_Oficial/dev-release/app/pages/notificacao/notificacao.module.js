@@ -17,7 +17,7 @@
             title: 'Notificação',
             sidebarMeta: {
                 icon: 'ion-ios-bell',
-                order: 9,
+                order: 10,
             },
         });
   }

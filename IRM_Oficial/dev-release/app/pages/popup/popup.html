@@ -1,0 +1,52 @@
+﻿<div class="widgets" ng-controller="PopupCtrl">
+
+    <div class="row">
+        <div class="col-md-12"
+             ba-panel
+             ba-panel-title="Post"
+             ba-panel-class="with-scroll">
+            <form name="form" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_titulo.$pristine && form.ds_titulo.$invalid }">
+                                    <label for="ds_titulo">Título do Popup</label>
+                                    <input ng-model="popup.DS_TITULO" placeholder="Título" name="ds_titulo" ng-minlength="4" ng-required="true" class="form-control" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label>Ativo?</label>
+                                    <ba-switcher switcher-style="primary" switcher-value="popup.FL_ATIVO"></ba-switcher>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error': !form.ds_popup.$pristine && form.ds_popup.$invalid }">
+                                    <label for="ds_post">Mensagem</label>
+                                    <textarea ng-model="popup.DS_POPUP" placeholder="Mensagem" name="ds_popup" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" ng-if="uploader">
+                                <div class="form-group" ng-class="{ 'has-error': !form.im_imagem.$pristine && form.im_imagem.$invalid }">
+                                    <label for="ds_audio">Imagem</label>
+                                    <input ng-model="popup.IM_IMAGEM" name="im_imagem" type="file" nv-file-select uploader="uploader" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <button class="btn btn-success btn-block" ng-disabled="form.$invalid" ng-click="salvar(popup)">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -61,6 +61,17 @@
           <Property Name="ID_IDIOMA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DS_IDIOMA" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="TB_POPUP">
+          <Key>
+            <PropertyRef Name="ID_POPUP" />
+          </Key>
+          <Property Name="ID_POPUP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DS_TITULO" Type="nvarchar" MaxLength="255" />
+          <Property Name="DS_POPUP" Type="nvarchar" MaxLength="255" />
+          <Property Name="DS_IMAGEM" Type="varchar(max)" />
+          <Property Name="FL_ATIVO" Type="bit" />
+          <Property Name="DT_POPUP" Type="datetime" />
+        </EntityType>
         <EntityType Name="TB_POST">
           <Key>
             <PropertyRef Name="ID_POST" />
@@ -308,6 +319,7 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySet Name="TB_CONTEUDO" EntityType="Self.TB_CONTEUDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_DOCUMENTO" EntityType="Self.TB_DOCUMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_IDIOMA" EntityType="Self.TB_IDIOMA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_POPUP" EntityType="Self.TB_POPUP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_POST" EntityType="Self.TB_POST" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_TIPO_POST" EntityType="Self.TB_TIPO_POST" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_TIPO_USUARIO" EntityType="Self.TB_TIPO_USUARIO" Schema="dbo" store:Type="Tables" />
@@ -571,6 +583,7 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySet Name="VW_RANK_GERAL" EntityType="irmoficialModel.VW_RANK_GERAL" />
           <EntitySet Name="VW_RANK_MENSAL" EntityType="irmoficialModel.VW_RANK_MENSAL" />
           <EntitySet Name="VW_RANK_SEMANAL" EntityType="irmoficialModel.VW_RANK_SEMANAL" />
+          <EntitySet Name="TB_POPUP" EntityType="irmoficialModel.TB_POPUP" />
         </EntityContainer>
         <EntityType Name="TB_ACOES_POST">
           <Key>
@@ -788,6 +801,17 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <Property Name="DS_CIDADE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="DS_ESTADO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="DS_PAIS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TB_POPUP">
+          <Key>
+            <PropertyRef Name="ID_POPUP" />
+          </Key>
+          <Property Name="ID_POPUP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_TITULO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DS_POPUP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DS_IMAGEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FL_ATIVO" Type="Boolean" />
+          <Property Name="DT_POPUP" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1008,6 +1032,18 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
                 <ScalarProperty Name="DS_NOME" ColumnName="DS_NOME" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="POSICAO_RANK" ColumnName="POSICAO_RANK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_POPUP">
+            <EntityTypeMapping TypeName="irmoficialModel.TB_POPUP">
+              <MappingFragment StoreEntitySet="TB_POPUP">
+                <ScalarProperty Name="DT_POPUP" ColumnName="DT_POPUP" />
+                <ScalarProperty Name="FL_ATIVO" ColumnName="FL_ATIVO" />
+                <ScalarProperty Name="DS_IMAGEM" ColumnName="DS_IMAGEM" />
+                <ScalarProperty Name="DS_POPUP" ColumnName="DS_POPUP" />
+                <ScalarProperty Name="DS_TITULO" ColumnName="DS_TITULO" />
+                <ScalarProperty Name="ID_POPUP" ColumnName="ID_POPUP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
