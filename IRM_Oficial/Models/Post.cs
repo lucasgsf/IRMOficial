@@ -97,8 +97,8 @@ namespace IRM_Oficial.Models
                            DT_CADASTRO = ps.DT_CADASTRO,
                            NR_ORDEM = ps.NR_ORDEM,
                            FL_FIXO = ps.FL_FIXO,
-                           DS_IMAGEM = "http://irmoficial.azurewebsites.net" + ps.DS_IMAGEM,
-                           DS_AUDIO = "http://irmoficial.azurewebsites.net" + ps.DS_AUDIO,
+                           DS_IMAGEM = "http://irmoficial.azureedge.net" + ps.DS_IMAGEM,
+                           DS_AUDIO = "http://irmoficial.azureedge.net" + ps.DS_AUDIO,
                            NR_CURTIDAS = _ap.Count(c => c.FL_CURTIR),
                            NR_COMPARTILHAMENTOS = _ap.Count(c => c.FL_COMPARTILHAR)
                        }).First();
@@ -174,8 +174,8 @@ namespace IRM_Oficial.Models
                             DT_CADASTRO = ps.DT_CADASTRO,
                             NR_ORDEM = ps.NR_ORDEM,
                             FL_FIXO = ps.FL_FIXO,
-                            DS_IMAGEM = "http://irmoficial.azurewebsites.net" + ps.DS_IMAGEM,
-                            DS_AUDIO = "http://irmoficial.azurewebsites.net" + ps.DS_AUDIO,
+                            DS_IMAGEM = "http://irmoficial.azureedge.net" + ps.DS_IMAGEM,
+                            DS_AUDIO = "http://irmoficial.azureedge.net" + ps.DS_AUDIO,
                             NR_CURTIDAS = curtidas,
                             NR_COMPARTILHAMENTOS = compartilhamentos
                         }).ToList();

@@ -43,7 +43,7 @@ namespace IRM_Oficial.Models
                                 DS_CONTEUDO = ct.DS_CONTEUDO,
                                 DS_LINK = ct.DS_LINK,
                                 FL_VIDEO = ct.FL_VIDEO,
-                                DS_IMAGEM = "http://irmoficial.azurewebsites.net" + ct.DS_IMAGEM,
+                                DS_IMAGEM = "http://irmoficial.azureedge.net" + ct.DS_IMAGEM,
                                 NR_ORDEM = ct.NR_ORDEM,
                                 NR_CURTIDAS = curtidas,
                             }).ToList();

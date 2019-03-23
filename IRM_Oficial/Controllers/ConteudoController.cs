@@ -99,13 +99,12 @@ namespace IRM_Oficial.Controllers
 
                 if (Path.GetExtension(arq.FileName).ToString() == ".jpg" || Path.GetExtension(arq.FileName).ToString() == ".png" || Path.GetExtension(arq.FileName).ToString() == ".jpeg")
                 {
+                    MemoryStream ms = new MemoryStream();
+                    arq.InputStream.CopyTo(ms);
+                    arq.InputStream.Position = ms.Position = 0;
+
                     // Salvando blob no banco de dados
-                    byte[] fileData = null;
-                    using (var binaryReader = new BinaryReader(arq.InputStream))
-                    {
-                        fileData = binaryReader.ReadBytes(arq.ContentLength);
-                    }
-                    conteudo.IM_IMAGEM = fileData;
+                    conteudo.IM_IMAGEM = ms.ToArray();
                 }
 
                 if (form["ID_CONTEUDO"] == null)
