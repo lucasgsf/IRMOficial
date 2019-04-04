@@ -284,6 +284,9 @@
     <Compile Include="VW_ACESSOS_TOTAIS.cs">
       <DependentUpon>DB_IRMOficial.tt</DependentUpon>
     </Compile>
+    <Compile Include="VW_ACESSOS_USUARIOS.cs">
+      <DependentUpon>DB_IRMOficial.tt</DependentUpon>
+    </Compile>
     <Compile Include="VW_COMPARTILHAMENTOS_AUDIO.cs">
       <DependentUpon>DB_IRMOficial.tt</DependentUpon>
     </Compile>

@@ -72,6 +72,8 @@ public partial class DB_IRMOficial : DbContext
 
     public virtual DbSet<TB_POPUP> TB_POPUP { get; set; }
 
+    public virtual DbSet<VW_ACESSOS_USUARIOS> VW_ACESSOS_USUARIOS { get; set; }
+
 }
 
 }

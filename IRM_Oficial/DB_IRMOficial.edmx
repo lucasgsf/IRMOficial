@@ -142,6 +142,15 @@ warning 6002: The table/view 'irmoficial.dbo.VW_ACESSOS_TOTAIS' does not have a 
           <Property Name="ACESSOS" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_ACESSOS_USUARIOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_ACESSOS_USUARIOS">
+          <Key>
+            <PropertyRef Name="ACESSOS" />
+          </Key>
+          <Property Name="ACESSOS" Type="int" Nullable="false" />
+          <Property Name="DATA" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'irmoficial.dbo.VW_COMPARTILHAMENTOS_AUDIO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_COMPARTILHAMENTOS_AUDIO">
           <Key>
@@ -334,6 +343,12 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
             <DefiningQuery>SELECT 
     [VW_ACESSOS_TOTAIS].[ACESSOS] AS [ACESSOS]
     FROM [dbo].[VW_ACESSOS_TOTAIS] AS [VW_ACESSOS_TOTAIS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_ACESSOS_USUARIOS" EntityType="Self.VW_ACESSOS_USUARIOS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_ACESSOS_USUARIOS].[ACESSOS] AS [ACESSOS], 
+    [VW_ACESSOS_USUARIOS].[DATA] AS [DATA]
+    FROM [dbo].[VW_ACESSOS_USUARIOS] AS [VW_ACESSOS_USUARIOS]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VW_COMPARTILHAMENTOS_AUDIO" EntityType="Self.VW_COMPARTILHAMENTOS_AUDIO" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -584,6 +599,7 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySet Name="VW_RANK_MENSAL" EntityType="irmoficialModel.VW_RANK_MENSAL" />
           <EntitySet Name="VW_RANK_SEMANAL" EntityType="irmoficialModel.VW_RANK_SEMANAL" />
           <EntitySet Name="TB_POPUP" EntityType="irmoficialModel.TB_POPUP" />
+          <EntitySet Name="VW_ACESSOS_USUARIOS" EntityType="irmoficialModel.VW_ACESSOS_USUARIOS" />
         </EntityContainer>
         <EntityType Name="TB_ACOES_POST">
           <Key>
@@ -812,6 +828,13 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <Property Name="DS_IMAGEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FL_ATIVO" Type="Boolean" />
           <Property Name="DT_POPUP" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VW_ACESSOS_USUARIOS">
+          <Key>
+            <PropertyRef Name="ACESSOS" />
+          </Key>
+          <Property Name="ACESSOS" Type="Int32" Nullable="false" />
+          <Property Name="DATA" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1044,6 +1067,14 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
                 <ScalarProperty Name="DS_POPUP" ColumnName="DS_POPUP" />
                 <ScalarProperty Name="DS_TITULO" ColumnName="DS_TITULO" />
                 <ScalarProperty Name="ID_POPUP" ColumnName="ID_POPUP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_ACESSOS_USUARIOS">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_ACESSOS_USUARIOS">
+              <MappingFragment StoreEntitySet="VW_ACESSOS_USUARIOS">
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="ACESSOS" ColumnName="ACESSOS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

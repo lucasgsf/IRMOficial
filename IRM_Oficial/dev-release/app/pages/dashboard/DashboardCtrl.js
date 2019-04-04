@@ -51,8 +51,11 @@
         });
 
         $scope.gerar = function (inicio, fim) {
-            DT_INICIO = inicio;
-            DT_FIM = fim;
+            var dtFimInc = new Date();
+            dtFimInc.setDate(dtFimInc.getDate() + 1);
+
+            DT_INICIO = (inicio) ? inicio : new Date('2000/01/01');
+            DT_FIM = (fim) ? fim : dtFimInc;
             $scope.$broadcast('dataChange', { DT_INICIO: inicio, DT_FIM: fim });
             buscaDados(inicio, fim);
         };

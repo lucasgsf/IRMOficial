@@ -12,6 +12,7 @@
   function DashboardPieChartCtrl($q, $rootScope, $scope, $timeout, baConfig, baUtil, DashboardService) {
     var DT_INICIO = new Date('2000/01/01');
     var DT_FIM = new Date();
+    DT_FIM.setDate(DT_FIM.getDate() + 1);
     buscaDados(DT_INICIO, DT_FIM);
 
     $scope.totalUsuarios = 0;
@@ -38,11 +39,12 @@
         ])
         .then(function(values) {
             $scope.totalUsuarios = values[0];
-            $scope.totalPosts = values[1];
-            $scope.totalCurtidas = values[2];
+            $scope.totalCurtidas = values[1];
+            $scope.totalPlays = values[2];
             $scope.totalCompartilhamentos = values[3];
-            $scope.totalPlays = values[3];
+            //$scope.totalPosts = values[1];
             //$scope.totalNaoCurtidas = values[3];
+
             geraGrafico(values[0], values[1], values[2], values[3]);
         });
     }
@@ -50,18 +52,18 @@
     function geraGrafico(v1, v2, v3, v4){
         $scope.charts = [{
           color: pieColor,
-          description: 'Usuários',
+          description: 'Acessos',
           stats: v1,
           icon: 'person',
         }, {
             color: pieColor,
             description: 'Curtidas',
-            stats: v3,
+            stats: v2,
             icon: 'thumbsup',
         }, {
           color: pieColor,
           description: 'Reproduções',
-          stats: v2,
+          stats: v3,
           icon: 'person',
         }, {
           color: pieColor,
