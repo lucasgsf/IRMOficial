@@ -159,6 +159,11 @@ namespace IRM_Oficial.Models
 
         public int totalUsuarios(DateTime inicio, DateTime fim)
         {
+            return db.VW_NOVOS_USUARIOS.AsEnumerable().Where(c => c.DATA.Value.Date >= inicio.Date && c.DATA.Value.Date <= fim.Date).Sum(c => c.CADASTROS);
+        }
+
+        public int totalAcessos(DateTime inicio, DateTime fim)
+        {
             return db.VW_ACESSOS_USUARIOS.AsEnumerable().Where(c => c.DATA.Value.Date >= inicio.Date && c.DATA.Value.Date <= fim.Date).Sum(c => c.ACESSOS);
         }
 

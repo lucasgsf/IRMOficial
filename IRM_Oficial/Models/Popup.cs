@@ -37,7 +37,7 @@ namespace IRM_Oficial.Models
                           {
                               ID_POPUP = p.ID_POPUP,
                               DS_TITULO = p.DS_TITULO,
-                              DS_IMAGEM = "http://irmoficial.azureedge.net" + p.DS_IMAGEM,
+                              DS_IMAGEM = Util.urlCDN + p.DS_IMAGEM,
                               DS_POPUP = p.DS_POPUP,
                               DT_POPUP = p.DT_POPUP,
                               FL_ATIVO = p.FL_ATIVO

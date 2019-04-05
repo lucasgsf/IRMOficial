@@ -129,6 +129,20 @@ namespace IRM_Oficial.Controllers
         }
 
         [HttpGet]
+        public HttpResponseMessage totalAcessos(DateTime inicio, DateTime fim)
+        {
+            try
+            {
+                Usuario usu = new Usuario();
+                return Request.CreateResponse(HttpStatusCode.OK, usu.totalAcessos(inicio, fim));
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, false);
+            }
+        }
+
+        [HttpGet]
         public HttpResponseMessage usuariosPorPaises(DateTime inicio, DateTime fim)
         {
             try

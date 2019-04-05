@@ -97,8 +97,8 @@ namespace IRM_Oficial.Models
                            DT_CADASTRO = ps.DT_CADASTRO,
                            NR_ORDEM = ps.NR_ORDEM,
                            FL_FIXO = ps.FL_FIXO,
-                           DS_IMAGEM = "http://irmoficial.azureedge.net" + ps.DS_IMAGEM,
-                           DS_AUDIO = "http://irmoficial.azureedge.net" + ps.DS_AUDIO,
+                           DS_IMAGEM = Util.urlCDN + ps.DS_IMAGEM,
+                           DS_AUDIO = Util.urlCDN + ps.DS_AUDIO,
                            NR_CURTIDAS = _ap.Count(c => c.FL_CURTIR),
                            NR_COMPARTILHAMENTOS = _ap.Count(c => c.FL_COMPARTILHAR)
                        }).First();
@@ -174,8 +174,8 @@ namespace IRM_Oficial.Models
                             DT_CADASTRO = ps.DT_CADASTRO,
                             NR_ORDEM = ps.NR_ORDEM,
                             FL_FIXO = ps.FL_FIXO,
-                            DS_IMAGEM = "http://irmoficial.azureedge.net" + ps.DS_IMAGEM,
-                            DS_AUDIO = "http://irmoficial.azureedge.net" + ps.DS_AUDIO,
+                            DS_IMAGEM = Util.urlCDN + ps.DS_IMAGEM,
+                            DS_AUDIO = Util.urlCDN + ps.DS_AUDIO,
                             NR_CURTIDAS = curtidas,
                             NR_COMPARTILHAMENTOS = compartilhamentos
                         }).ToList();
@@ -264,7 +264,7 @@ namespace IRM_Oficial.Models
 
         public int totalPosts(DateTime inicio, DateTime fim)
         {
-            return db.TB_POST.Where(c => DbFunctions.TruncateTime(c.DT_CADASTRO) >= inicio.Date && DbFunctions.TruncateTime(c.DT_CADASTRO) <= fim.Date).Count();
+            return db.VW_NUMERO_POSTS.AsEnumerable().Where(c => c.DATA.Value.Date >= inicio.Date && c.DATA.Value.Date <= fim.Date).Sum(c => c.CADASTROS);
         }
 
         public static DateTime PegaHoraBrasilia()

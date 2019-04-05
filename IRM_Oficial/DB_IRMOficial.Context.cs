@@ -74,6 +74,8 @@ public partial class DB_IRMOficial : DbContext
 
     public virtual DbSet<VW_ACESSOS_USUARIOS> VW_ACESSOS_USUARIOS { get; set; }
 
+    public virtual DbSet<VW_NUMERO_POSTS> VW_NUMERO_POSTS { get; set; }
+
 }
 
 }

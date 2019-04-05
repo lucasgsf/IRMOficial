@@ -35,7 +35,12 @@ angular.module('BlurAdmin.pages.dashboard').service('DashboardService', function
             return $http.get('../../../../api/Usuario/totalUsuarios?inicio=' + inicio + '&fim=' + fim).then(function (response) {
 	            return response.data;
 	        });
-	    },
+        },
+        totalAcessos: function (inicio, fim) {
+            return $http.get('../../../../api/Usuario/totalAcessos?inicio=' + inicio + '&fim=' + fim).then(function (response) {
+                return response.data;
+            });
+        },
         totalPosts: function (inicio, fim) {
             return $http.get('../../../../api/Post/totalPosts?inicio=' + inicio + '&fim=' + fim).then(function (response) {
 	            return response.data;

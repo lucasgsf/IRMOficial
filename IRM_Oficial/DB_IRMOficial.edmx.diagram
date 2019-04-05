@@ -34,6 +34,7 @@
         <EntityTypeShape EntityType="irmoficialModel.VW_RANK_SEMANAL" Width="1.5" PointX="11.375" PointY="7.75" />
         <EntityTypeShape EntityType="irmoficialModel.TB_POPUP" Width="1.5" PointX="11.375" PointY="11.75" />
         <EntityTypeShape EntityType="irmoficialModel.VW_ACESSOS_USUARIOS" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="irmoficialModel.VW_NUMERO_POSTS" Width="1.5" PointX="3.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

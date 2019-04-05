@@ -20,6 +20,7 @@
     $scope.totalCurtidas = 0;
     $scope.totalPlays = 0;
     $scope.totalCompartilhamentos = 0;
+    $scope.totalAcessos = 0;
     //$scope.totalNaoCurtidas = 0;
 
     $scope.$on('dataChange', function(event, args){
@@ -31,44 +32,57 @@
     function buscaDados(DT_INICIO, DT_FIM){
         $q.all([
             DashboardService.totalUsuarios(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US')), 
-            DashboardService.totalCurtidas(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US')),
+            DashboardService.totalAcessos(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US')),
+            DashboardService.totalPosts(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US')),
+            DashboardService.totalCompartilhamentos(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US')),
             DashboardService.totalPlays(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US')),
-            DashboardService.totalCompartilhamentos(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US'))
+            DashboardService.totalCurtidas(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US'))
             //DashboardService.totalNaoCurtidas(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US'))
-            //DashboardService.totalPosts(DT_INICIO.toLocaleString('en-US'), DT_FIM.toLocaleString('en-US')),
         ])
         .then(function(values) {
             $scope.totalUsuarios = values[0];
-            $scope.totalCurtidas = values[1];
-            $scope.totalPlays = values[2];
+            $scope.totalAcessos = values[1];
+            $scope.totalPosts = values[2];
             $scope.totalCompartilhamentos = values[3];
-            //$scope.totalPosts = values[1];
+            $scope.totalPlays = values[4];
+            $scope.totalCurtidas = values[5];
             //$scope.totalNaoCurtidas = values[3];
 
-            geraGrafico(values[0], values[1], values[2], values[3]);
+            geraGrafico(values);
         });
     }
 
-    function geraGrafico(v1, v2, v3, v4){
-        $scope.charts = [{
+    function geraGrafico(values){
+        $scope.charts = [
+        {
           color: pieColor,
-          description: 'Acessos',
-          stats: v1,
+          description: 'Novos Usuários',
+          stats: values[0],
           icon: 'person',
         }, {
-            color: pieColor,
-            description: 'Curtidas',
-            stats: v2,
-            icon: 'thumbsup',
+          color: pieColor,
+          description: 'Acessos',
+          stats: values[1],
+          icon: 'person',
+        }, {
+          color: pieColor,
+          description: 'Posts',
+          stats: values[2],
+          icon: 'person',
+        }, {
+          color: pieColor,
+          description: 'Compartilhamentos',
+          stats: values[3],
+          icon: 'person',
         }, {
           color: pieColor,
           description: 'Reproduções',
-          stats: v3,
-          icon: 'person',
+          stats: values[4],
+          icon: 'thumbsup',
         }, {
           color: pieColor,
-          description: 'Compart.',
-          stats: v4,
+          description: 'Curtidas',
+          stats: values[5],
           icon: 'person',
         }
         ];

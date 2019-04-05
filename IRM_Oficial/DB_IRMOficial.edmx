@@ -178,6 +178,15 @@ warning 6002: The table/view 'irmoficial.dbo.VW_NOVOS_USUARIOS' does not have a 
           <Property Name="DATA" Type="date" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'irmoficial.dbo.VW_NUMERO_POSTS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_NUMERO_POSTS">
+          <Key>
+            <PropertyRef Name="CADASTROS" />
+          </Key>
+          <Property Name="CADASTROS" Type="int" Nullable="false" />
+          <Property Name="DATA" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'irmoficial.dbo.VW_PLAYS_AUDIO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_PLAYS_AUDIO">
           <Key>
@@ -367,6 +376,12 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
     [VW_NOVOS_USUARIOS].[CADASTROS] AS [CADASTROS], 
     [VW_NOVOS_USUARIOS].[DATA] AS [DATA]
     FROM [dbo].[VW_NOVOS_USUARIOS] AS [VW_NOVOS_USUARIOS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_NUMERO_POSTS" EntityType="Self.VW_NUMERO_POSTS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_NUMERO_POSTS].[CADASTROS] AS [CADASTROS], 
+    [VW_NUMERO_POSTS].[DATA] AS [DATA]
+    FROM [dbo].[VW_NUMERO_POSTS] AS [VW_NUMERO_POSTS]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VW_PLAYS_AUDIO" EntityType="Self.VW_PLAYS_AUDIO" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -600,6 +615,7 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySet Name="VW_RANK_SEMANAL" EntityType="irmoficialModel.VW_RANK_SEMANAL" />
           <EntitySet Name="TB_POPUP" EntityType="irmoficialModel.TB_POPUP" />
           <EntitySet Name="VW_ACESSOS_USUARIOS" EntityType="irmoficialModel.VW_ACESSOS_USUARIOS" />
+          <EntitySet Name="VW_NUMERO_POSTS" EntityType="irmoficialModel.VW_NUMERO_POSTS" />
         </EntityContainer>
         <EntityType Name="TB_ACOES_POST">
           <Key>
@@ -834,6 +850,13 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
             <PropertyRef Name="ACESSOS" />
           </Key>
           <Property Name="ACESSOS" Type="Int32" Nullable="false" />
+          <Property Name="DATA" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="VW_NUMERO_POSTS">
+          <Key>
+            <PropertyRef Name="CADASTROS" />
+          </Key>
+          <Property Name="CADASTROS" Type="Int32" Nullable="false" />
           <Property Name="DATA" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
@@ -1075,6 +1098,14 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
               <MappingFragment StoreEntitySet="VW_ACESSOS_USUARIOS">
                 <ScalarProperty Name="DATA" ColumnName="DATA" />
                 <ScalarProperty Name="ACESSOS" ColumnName="ACESSOS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_NUMERO_POSTS">
+            <EntityTypeMapping TypeName="irmoficialModel.VW_NUMERO_POSTS">
+              <MappingFragment StoreEntitySet="VW_NUMERO_POSTS">
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="CADASTROS" ColumnName="CADASTROS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
