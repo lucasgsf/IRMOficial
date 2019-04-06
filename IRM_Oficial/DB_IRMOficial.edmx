@@ -331,6 +331,30 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_ACESSOS_USUARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DT_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="DT_FIM" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_COMPARTILHAMENTOS_AUDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DT_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="DT_FIM" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_CURTIDAS_AUDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DT_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="DT_FIM" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_NOVOS_USUARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DT_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="DT_FIM" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_NUMERO_POSTS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DT_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="DT_FIM" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_PLAYS_AUDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DT_INICIO" Type="datetime" Mode="In" />
+          <Parameter Name="DT_FIM" Type="datetime" Mode="In" />
+        </Function>
         <EntityContainer Name="irmoficialModelStoreContainer">
           <EntitySet Name="TB_ACOES_CONTEUDO" EntityType="Self.TB_ACOES_CONTEUDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TB_ACOES_POST" EntityType="Self.TB_ACOES_POST" Schema="dbo" store:Type="Tables" />
@@ -616,6 +640,30 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
           <EntitySet Name="TB_POPUP" EntityType="irmoficialModel.TB_POPUP" />
           <EntitySet Name="VW_ACESSOS_USUARIOS" EntityType="irmoficialModel.VW_ACESSOS_USUARIOS" />
           <EntitySet Name="VW_NUMERO_POSTS" EntityType="irmoficialModel.VW_NUMERO_POSTS" />
+          <FunctionImport Name="SP_NUMERO_POSTS" ReturnType="Collection(Int32)">
+            <Parameter Name="DT_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="DT_FIM" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACESSOS_USUARIOS" ReturnType="Collection(Int32)">
+            <Parameter Name="DT_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="DT_FIM" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_COMPARTILHAMENTOS_AUDIO" ReturnType="Collection(Int32)">
+            <Parameter Name="DT_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="DT_FIM" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CURTIDAS_AUDIO" ReturnType="Collection(Int32)">
+            <Parameter Name="DT_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="DT_FIM" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NOVOS_USUARIOS" ReturnType="Collection(Int32)">
+            <Parameter Name="DT_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="DT_FIM" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PLAYS_AUDIO" ReturnType="Collection(Int32)">
+            <Parameter Name="DT_INICIO" Mode="In" Type="DateTime" />
+            <Parameter Name="DT_FIM" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="TB_ACOES_POST">
           <Key>
@@ -1109,6 +1157,12 @@ warning 6002: The table/view 'irmoficial.dbo.VW_RANK_SEMANAL' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_NUMERO_POSTS" FunctionName="irmoficialModel.Store.SP_NUMERO_POSTS" />
+          <FunctionImportMapping FunctionImportName="SP_ACESSOS_USUARIOS" FunctionName="irmoficialModel.Store.SP_ACESSOS_USUARIOS" />
+          <FunctionImportMapping FunctionImportName="SP_COMPARTILHAMENTOS_AUDIO" FunctionName="irmoficialModel.Store.SP_COMPARTILHAMENTOS_AUDIO" />
+          <FunctionImportMapping FunctionImportName="SP_CURTIDAS_AUDIO" FunctionName="irmoficialModel.Store.SP_CURTIDAS_AUDIO" />
+          <FunctionImportMapping FunctionImportName="SP_NOVOS_USUARIOS" FunctionName="irmoficialModel.Store.SP_NOVOS_USUARIOS" />
+          <FunctionImportMapping FunctionImportName="SP_PLAYS_AUDIO" FunctionName="irmoficialModel.Store.SP_PLAYS_AUDIO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

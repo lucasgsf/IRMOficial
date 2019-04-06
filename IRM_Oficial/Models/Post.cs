@@ -264,7 +264,7 @@ namespace IRM_Oficial.Models
 
         public int totalPosts(DateTime inicio, DateTime fim)
         {
-            return db.VW_NUMERO_POSTS.AsEnumerable().Where(c => c.DATA.Value.Date >= inicio.Date && c.DATA.Value.Date <= fim.Date).Sum(c => c.CADASTROS);
+           return db.SP_NUMERO_POSTS(inicio, fim).FirstOrDefault().Value;
         }
 
         public static DateTime PegaHoraBrasilia()

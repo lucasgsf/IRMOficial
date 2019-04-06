@@ -56,7 +56,7 @@ namespace IRM_Oficial.Models
 
         public int totalCurtidas(DateTime inicio, DateTime fim)
         {
-            return db.VW_CURTIDAS_AUDIO.AsEnumerable().Where(c => c.DATA.Value.Date >= inicio.Date && c.DATA.Value.Date <= fim.Date).Sum(c => c.INTERACOES);
+            return db.SP_CURTIDAS_AUDIO(inicio, fim).FirstOrDefault().Value;
         }
 
         public int totalNaoCurtidas(DateTime inicio, DateTime fim)
@@ -73,12 +73,12 @@ namespace IRM_Oficial.Models
 
         public int totalCompartilhamentos(DateTime inicio, DateTime fim)
         {
-            return db.VW_COMPARTILHAMENTOS_AUDIO.AsEnumerable().Where(c => c.DATA.Value.Date >= inicio.Date && c.DATA.Value.Date <= fim.Date).Sum(c => c.INTERACOES);
+            return db.SP_COMPARTILHAMENTOS_AUDIO(inicio, fim).FirstOrDefault().Value;
         }
 
         public int totalPlays(DateTime inicio, DateTime fim)
         {
-            return db.VW_PLAYS_AUDIO.AsEnumerable().Where(c => c.DATA.Value.Date >= inicio.Date && c.DATA.Value.Date <= fim.Date).Sum(c => c.INTERACOES);
+            return db.SP_PLAYS_AUDIO(inicio, fim).FirstOrDefault().Value;
         }
     }
 }

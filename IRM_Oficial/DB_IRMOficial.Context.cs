@@ -17,6 +17,9 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
+using System.Data.Entity.Core.Objects;
+using System.Linq;
+
 
 public partial class DB_IRMOficial : DbContext
 {
@@ -75,6 +78,108 @@ public partial class DB_IRMOficial : DbContext
     public virtual DbSet<VW_ACESSOS_USUARIOS> VW_ACESSOS_USUARIOS { get; set; }
 
     public virtual DbSet<VW_NUMERO_POSTS> VW_NUMERO_POSTS { get; set; }
+
+
+    public virtual ObjectResult<Nullable<int>> SP_NUMERO_POSTS(Nullable<System.DateTime> dT_INICIO, Nullable<System.DateTime> dT_FIM)
+    {
+
+        var dT_INICIOParameter = dT_INICIO.HasValue ?
+            new ObjectParameter("DT_INICIO", dT_INICIO) :
+            new ObjectParameter("DT_INICIO", typeof(System.DateTime));
+
+
+        var dT_FIMParameter = dT_FIM.HasValue ?
+            new ObjectParameter("DT_FIM", dT_FIM) :
+            new ObjectParameter("DT_FIM", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_NUMERO_POSTS", dT_INICIOParameter, dT_FIMParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> SP_ACESSOS_USUARIOS(Nullable<System.DateTime> dT_INICIO, Nullable<System.DateTime> dT_FIM)
+    {
+
+        var dT_INICIOParameter = dT_INICIO.HasValue ?
+            new ObjectParameter("DT_INICIO", dT_INICIO) :
+            new ObjectParameter("DT_INICIO", typeof(System.DateTime));
+
+
+        var dT_FIMParameter = dT_FIM.HasValue ?
+            new ObjectParameter("DT_FIM", dT_FIM) :
+            new ObjectParameter("DT_FIM", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_ACESSOS_USUARIOS", dT_INICIOParameter, dT_FIMParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> SP_COMPARTILHAMENTOS_AUDIO(Nullable<System.DateTime> dT_INICIO, Nullable<System.DateTime> dT_FIM)
+    {
+
+        var dT_INICIOParameter = dT_INICIO.HasValue ?
+            new ObjectParameter("DT_INICIO", dT_INICIO) :
+            new ObjectParameter("DT_INICIO", typeof(System.DateTime));
+
+
+        var dT_FIMParameter = dT_FIM.HasValue ?
+            new ObjectParameter("DT_FIM", dT_FIM) :
+            new ObjectParameter("DT_FIM", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_COMPARTILHAMENTOS_AUDIO", dT_INICIOParameter, dT_FIMParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> SP_CURTIDAS_AUDIO(Nullable<System.DateTime> dT_INICIO, Nullable<System.DateTime> dT_FIM)
+    {
+
+        var dT_INICIOParameter = dT_INICIO.HasValue ?
+            new ObjectParameter("DT_INICIO", dT_INICIO) :
+            new ObjectParameter("DT_INICIO", typeof(System.DateTime));
+
+
+        var dT_FIMParameter = dT_FIM.HasValue ?
+            new ObjectParameter("DT_FIM", dT_FIM) :
+            new ObjectParameter("DT_FIM", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_CURTIDAS_AUDIO", dT_INICIOParameter, dT_FIMParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> SP_NOVOS_USUARIOS(Nullable<System.DateTime> dT_INICIO, Nullable<System.DateTime> dT_FIM)
+    {
+
+        var dT_INICIOParameter = dT_INICIO.HasValue ?
+            new ObjectParameter("DT_INICIO", dT_INICIO) :
+            new ObjectParameter("DT_INICIO", typeof(System.DateTime));
+
+
+        var dT_FIMParameter = dT_FIM.HasValue ?
+            new ObjectParameter("DT_FIM", dT_FIM) :
+            new ObjectParameter("DT_FIM", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_NOVOS_USUARIOS", dT_INICIOParameter, dT_FIMParameter);
+    }
+
+
+    public virtual ObjectResult<Nullable<int>> SP_PLAYS_AUDIO(Nullable<System.DateTime> dT_INICIO, Nullable<System.DateTime> dT_FIM)
+    {
+
+        var dT_INICIOParameter = dT_INICIO.HasValue ?
+            new ObjectParameter("DT_INICIO", dT_INICIO) :
+            new ObjectParameter("DT_INICIO", typeof(System.DateTime));
+
+
+        var dT_FIMParameter = dT_FIM.HasValue ?
+            new ObjectParameter("DT_FIM", dT_FIM) :
+            new ObjectParameter("DT_FIM", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_PLAYS_AUDIO", dT_INICIOParameter, dT_FIMParameter);
+    }
 
 }
 
